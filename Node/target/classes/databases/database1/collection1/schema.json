@@ -1,6 +1,6 @@
 {
-  "_id" : "string"
-  "name": "string"
-  "number": "integer"
+  "_id" : "string",
+  "name": "string",
+  "number": "integer",
   "salary": "double"
 }

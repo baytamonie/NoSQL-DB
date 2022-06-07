@@ -6,9 +6,17 @@ import java.net.Socket;
 public class Server {
 
     private final int port;
+    public static int load;
     private ServerSocket serverSocket;
     private Socket toController;
-    public Server()  {
+
+    public static Server server = new Server();
+
+    public static Server getServer(){
+        return server;
+    }
+    private Server()  {
+        load = 0;
         try {
             this.serverSocket = new ServerSocket(0);
         } catch (IOException e) {
@@ -25,7 +33,7 @@ public class Server {
             try {
                 Socket client = serverSocket.accept();
                 System.out.println("Accepted client");
-                Thread clientThread = new Thread(new ClientHandler());
+                Thread clientThread = new Thread(new ClientHandler(client));
                 clientThread.start();
             } catch (IOException e) {
                 System.out.println("Error accepting clients, try rebooting this node");

@@ -1,4 +1,4 @@
-package drivers;
+package driver;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class ClientDriver {
+public class ClientConnector {
     private DataInputStream fromServer;
     private ObjectOutputStream toServer;
     private Socket socket;
     private  int port;
 
-    public ClientDriver(){
+    public ClientConnector(){
         try{
         this.port = getNodePort();
         if(port ==-1)

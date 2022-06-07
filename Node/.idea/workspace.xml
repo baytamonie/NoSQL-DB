@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java" />
+    <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java">
+      <change afterPath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/src/main/java/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/drivers/ClientDriver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/target/classes/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/drivers/ClientDriver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/entities/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/entities/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Controller$Sockets.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/entities/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/entities/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +57,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/bayta/Desktop/dbf0java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mbayt/OneDrive/Desktop/Final-project-Atypon/ClientTest&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -50,7 +70,7 @@
       <recent name="documents.entities" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Java">
     <configuration name="Java" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Node" />
@@ -58,6 +78,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RandomAccessFileTesting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Node" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RandomAccessFileTesting" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RandomAccessFileTesting" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -72,6 +106,8 @@
       <workItem from="1654372933844" duration="14969000" />
       <workItem from="1654533278100" duration="4728000" />
       <workItem from="1654543858310" duration="2090000" />
+      <workItem from="1654611146689" duration="13075000" />
+      <workItem from="1654632898751" duration="990000" />
     </task>
     <task id="LOCAL-00001" summary="Added Node.java">
       <created>1654188495885</created>
