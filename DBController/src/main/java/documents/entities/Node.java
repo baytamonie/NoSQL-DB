@@ -15,6 +15,9 @@ public class Node implements Comparable<Node> {
     public int getLoad() {
         return load;
     }
+    public void setLoad(int load){
+        this.load = load;
+    }
 
     @Override
     public int compareTo(Node node) {

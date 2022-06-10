@@ -26,7 +26,7 @@ public class ClientConnector {
     catch (Exception e){
         ClientHandler.connectionEstablished = false;
         System.out.println("Error initializing client");
-        return null;
+        throw new RuntimeException();
      }
     }
     public int getNodePort(){
@@ -37,6 +37,7 @@ public class ClientConnector {
             ObjectInputStream objectInputStream = new ObjectInputStream(connector.getInputStream());
             Packet portNum = (Packet) objectInputStream.readObject();
             int port = Integer.valueOf(portNum.getMessage());
+            System.out.println(port);
             return port;
         } catch (Exception e) {
             System.out.println("Error giving port");

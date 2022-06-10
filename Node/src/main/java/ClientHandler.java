@@ -18,55 +18,77 @@ public class ClientHandler implements Runnable {
   private boolean isLoggedIn;
   private User user;
 
+  private final ObjectOutputStream objectOutputStreamClient;
   public ClientHandler(Socket client, Socket controller) {
     this.client = client;
     this.controller = controller;
     this.isLoggedIn = false;
+    try {
+      objectOutputStreamClient = new ObjectOutputStream(client.getOutputStream());
+      objectInputStreamClient = new ObjectInputStream(client.getInputStream());
+      objectOutputStreamController = new ObjectOutputStream(controller.getOutputStream());
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+
   }
 
   public void login() throws IOException, ClassNotFoundException {
 
-    ObjectOutputStream objectOutputStream;
-    ObjectInputStream objectInputStream = new ObjectInputStream(controller.getInputStream());
-    Packet packet = (Packet) objectInputStream.readObject();
+
+    Packet packet = (Packet) objectInputStreamClient.readObject();
     String username = packet.getMessage();
-    packet = (Packet) objectInputStream.readObject();
+    packet = (Packet) objectInputStreamClient.readObject();
     String password = packet.getMessage();
-    objectOutputStream = new ObjectOutputStream(client.getOutputStream());
     for (User user : Server.userList) {
       if (user.getName().equals(username) && user.getPassword().equals(password)) {
-        objectOutputStream.writeObject(new Packet("true"));
+        objectOutputStreamClient.writeObject(new Packet("true"));
         System.out.println("successful login");
-        objectOutputStream.writeObject(new Packet(user.getAuthority()));
-        objectOutputStream.close();
-        objectInputStream.close();
+        objectOutputStreamClient.writeObject(new Packet(user.getAuthority()));
         return;
       }
     }
-    objectOutputStream.writeObject(new Packet("false"));
+    objectOutputStreamClient.writeObject(new Packet("false"));
     System.out.println("not successful login");
-    objectOutputStream.close();
-    objectInputStream.close();
+
   }
 
   @Override
   public void run() {
     while (!client.isClosed()) {
+
       Packet command;
       try {
-        ObjectInputStream objectInputStream = new ObjectInputStream(client.getInputStream());
-        command = (Packet) objectInputStream.readObject();
+        command = (Packet) objectInputStreamClient.readObject();
+        System.out.println(command);
         switch (command.getMessage().toLowerCase()) {
           case "login":
-            System.out.println(command.getMessage());
             login();
             break;
           case "readById":
             break;
         }
-        objectInputStream.close();
       } catch (IOException e) {
+        try {
+          objectOutputStreamController.writeObject(new Packet("load"));
+          client.close();
+        } catch (IOException ex) {
+          throw new RuntimeException(ex);
+        }
+        System.out.println("client disconnected");
+        Server.load--;
+        try {
+          objectOutputStreamController.writeObject(String.valueOf(Server.load));
+        } catch (IOException ex) {
+          throw new RuntimeException(ex);
+        }
         System.out.println("error creating input stream with client");
+        try {
+          client.close();
+        } catch (IOException ex) {
+          throw new RuntimeException(ex);
+        }
       } catch (ClassNotFoundException e) {
         System.out.println("error reading object from client");
       }

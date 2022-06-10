@@ -38,11 +38,13 @@ public class ClientHandler implements ClientInterface {
   public void createConnection() {
     this.connector = new ClientConnector();
     socket = connector.initConnection();
-    if (socket != null) connectionEstablished = true;
+    if (socket != null)
+      connectionEstablished = true;
   }
 
   @Override
   public void login(String username, String password) {
+    if(connectionEstablished)
     try {
       objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
       objectOutputStream.writeObject(new Packet("login"));
@@ -56,10 +58,10 @@ public class ClientHandler implements ClientInterface {
         userAuthority = authority.getMessage();
         System.out.println("logged in successfully");
       }
-      else
+      else{
         isLoggedIn = false;
-      objectInputStream.close();
-      objectOutputStream.close();
+      }
+
 
     } catch (IOException e) {
       System.out.println("try again, bad login");

@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Server {
 
   private final int port;
-  public static int load;
+  public volatile static int load;
   private ServerSocket serverSocket;
   private Socket controller;
   private ObjectOutputStream objectOutputStream;
@@ -57,6 +57,7 @@ public class Server {
 
   public void startNode() {
     sendPortToController();
+
     refreshNode();
     Thread checkUserInput =
         new Thread(
@@ -67,6 +68,8 @@ public class Server {
     while (!this.serverSocket.isClosed()) {
       try {
         Socket client = serverSocket.accept();
+        load++;
+        System.out.println(load);
         System.out.println("Accepted client");
         Thread clientThread = new Thread(new ClientHandler(client, controller));
         clientThread.start();
@@ -97,10 +100,10 @@ public class Server {
       Packet sendPortNumber = new Packet(String.valueOf(port));
       objectOutputStream.writeObject(controllerConnection);
       objectOutputStream.writeObject(sendPortNumber);
-      objectOutputStream.close();
-      System.out.println("connected to Controller");
+
     } catch (IOException e) {
       System.out.println("Error giving port to controller, try again please");
+      throw new RuntimeException();
     }
   }
 

@@ -44,14 +44,13 @@ public class Controller implements Serializable {
         objectInputStream = new ObjectInputStream(socket.getInputStream());
         objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         Packet socketType = (Packet) objectInputStream.readObject();
-        System.out.println(socketType.getMessage());
+
         Thread socketHandler = null;
         if (socketType.getMessage().equals("nodeConnection"))
-          socketHandler = new Thread(new NodeHandler(socket));
+          socketHandler = new Thread(new NodeHandler(socket,objectInputStream));
         else if (socketType.getMessage().equals("clientConnection"))
-          socketHandler = new Thread(new ClientHandler(socket));
-        objectInputStream.close();
-        objectOutputStream.close();
+          socketHandler = new Thread(new ClientHandler(socket,objectOutputStream));
+
         if (socketHandler != null) socketHandler.start();
       } catch (Exception e) {
         System.out.println(e.getMessage());
