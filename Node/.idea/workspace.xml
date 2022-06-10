@@ -5,24 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java">
-      <change afterPath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/google-java-format.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/.idea/google-java-format.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/jarRepositories.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/src/main/java/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/drivers/ClientDriver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/target/classes/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/drivers/ClientDriver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ClientTest/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/ClientConnector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/ClientHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/ClientInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/JSONCollection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/JSONDocument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/ArrayEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/BooleanEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/DecimalEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/DocumentEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/DocumentEntityType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/IntegerEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/NullEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/ObjectEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/src/main/java/driver/documentEntities/StringEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/ClientConnector.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/ClientHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/ClientInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/JSONCollection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/JSONDocument.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/ArrayEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/BooleanEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/DecimalEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/DocumentEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/DocumentEntityType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/IntegerEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/NullEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/ObjectEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClientTest/target/classes/driver/documentEntities/StringEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/entities/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/entities/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/entities/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Controller$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Controller$Sockets.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/entities/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/entities/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/controller/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/entities/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/ClientHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +62,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -57,7 +86,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mbayt/OneDrive/Desktop/Final-project-Atypon/ClientTest&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mbayt/OneDrive/Desktop/Final-project-Atypon/Node/src/main/resources/databases&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -65,6 +95,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mbayt\OneDrive\Desktop\Final-project-Atypon\Node\src\main\resources\databases" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="documents" />
       <recent name="documents.entities" />
@@ -74,6 +107,42 @@
     <configuration name="Java" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Node" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DocumentEntitiesTesting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Node" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DocumentEntitiesTesting" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileTesting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Node" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="FileTesting" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoadingDatabases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Node" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LoadingDatabases" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NodesTesting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Node" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="NodesTesting" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,6 +158,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LoadingDatabases" />
+        <item itemvalue="JUnit.DocumentEntitiesTesting" />
+        <item itemvalue="JUnit.FileTesting" />
+        <item itemvalue="JUnit.NodesTesting" />
         <item itemvalue="JUnit.RandomAccessFileTesting" />
       </list>
     </recent_temporary>
@@ -107,7 +180,9 @@
       <workItem from="1654533278100" duration="4728000" />
       <workItem from="1654543858310" duration="2090000" />
       <workItem from="1654611146689" duration="13075000" />
-      <workItem from="1654632898751" duration="990000" />
+      <workItem from="1654632898751" duration="12897000" />
+      <workItem from="1654693068666" duration="16452000" />
+      <workItem from="1654875559409" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="Added Node.java">
       <created>1654188495885</created>
