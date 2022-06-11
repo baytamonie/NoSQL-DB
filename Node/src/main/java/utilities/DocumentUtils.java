@@ -24,7 +24,7 @@ public  class DocumentUtils {
         boolean exists = tempFile.exists();
         return exists;
     }
-    public String pathBuilder(String dbName, String collectionName, String fileName){
+    public static String pathBuilder(String dbName, String collectionName, String fileName){
 
         return "src/main/resources/databases/"
                 +dbName

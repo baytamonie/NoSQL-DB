@@ -1,6 +1,3 @@
-import documents.IdsDocument;
-import documents.JSONDocument;
-import documents.entities.DocumentEntity;
 import documents.entities.User;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,7 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 

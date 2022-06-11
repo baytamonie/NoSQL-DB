@@ -1,12 +1,12 @@
 package documents;
 
-public class IdsDocument {
+public class IdsObject {
 
     private final long begin;
     private final long end;
     private final String id;
 
-    public IdsDocument(long begin, long end, String id) {
+    public IdsObject(long begin, long end, String id) {
         this.begin = begin;
         this.end = end;
         this.id = id;

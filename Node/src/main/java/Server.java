@@ -71,7 +71,7 @@ public class Server {
         load++;
         System.out.println(load);
         System.out.println("Accepted client");
-        Thread clientThread = new Thread(new ClientHandler(client, controller));
+        Thread clientThread = new Thread(new ClientHandler(client, controller,objectOutputStream));
         clientThread.start();
       } catch (IOException e) {
         System.out.println("Error accepting clients, try rebooting this node");

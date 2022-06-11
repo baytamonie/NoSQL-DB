@@ -1,23 +1,41 @@
 import java.io.*;
 
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import documents.IdsDocument;
-import documents.entities.DocumentEntity;
-import org.apache.commons.lang3.SerializationUtils;
+import documents.IdsObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
-import java.io.*;
 
 
 import java.util.HashMap;
 
 public class RandomAccessFileTesting  {
 
+    @Test
+    public void readBytes(){
+        long endIndex = 107;
+        long startIndex = 1;
+        String path = "src/main/resources/databases/database1/collection1/data.json";
+        int sizeOfBytes = (int)(endIndex - startIndex);
+        try(RandomAccessFile randomAccessFile = new RandomAccessFile(path,"rw")){
+            randomAccessFile.seek(startIndex);
+            byte[] bytes = new byte[(int) sizeOfBytes];
+            randomAccessFile.read(bytes);
+            String s = new String(bytes);
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(s);
+            System.out.println(jsonObject.get("_id"));
+            System.out.println(s);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 //    private HashMap<String, DocumentEntity> ids;
     @Test
     public void loadObjectFromRAF(){
@@ -28,11 +46,11 @@ public class RandomAccessFileTesting  {
             JSONParser jsonParser = new JSONParser();
             Object obj = jsonParser.parse(fileReader);
             JSONArray idsLoc = (JSONArray) obj;
-            HashMap<String, IdsDocument> ids = new HashMap<>();
+            HashMap<String, IdsObject> ids = new HashMap<>();
             for(Object object : idsLoc){
-                ids.put((String)((JSONObject) object).get("_id"),new IdsDocument((Long)((JSONObject)object).get("begin"),(Long)((JSONObject)object).get("end"),(String)((JSONObject)object).get("_id")));
+                ids.put((String)((JSONObject) object).get("_id"),new IdsObject((Long)((JSONObject)object).get("begin"),(Long)((JSONObject)object).get("end"),(String)((JSONObject)object).get("_id")));
             }
-            IdsDocument document = ids.get("129124");
+            IdsObject document = ids.get("129124");
             long i = document.getBegin();
             long x = document.getEnd() -document.getBegin();
             int x1 = (int) x;
@@ -117,9 +135,9 @@ public class RandomAccessFileTesting  {
             JSONParser jsonParser = new JSONParser();
             Object obj = jsonParser.parse(fileReader);
             JSONArray idsLoc = (JSONArray) obj;
-            HashMap<String, IdsDocument> ids = new HashMap<>();
+            HashMap<String, IdsObject> ids = new HashMap<>();
             for(Object object : idsLoc){
-                ids.put((String)((JSONObject) object).get("_id"),new IdsDocument((Long)((JSONObject)object).get("begin"),(Long)((JSONObject)object).get("end"),(String)((JSONObject)object).get("_id")));
+                ids.put((String)((JSONObject) object).get("_id"),new IdsObject((Long)((JSONObject)object).get("begin"),(Long)((JSONObject)object).get("end"),(String)((JSONObject)object).get("_id")));
         System.out.println(ids.get((String)((JSONObject) object).get("_id")));
             }
 

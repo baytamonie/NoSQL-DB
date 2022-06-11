@@ -1,6 +1,7 @@
 package driver;
 
-import driver.documentEntities.DocumentEntity;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.util.List;
 
@@ -8,17 +9,17 @@ public interface ClientInterface {
 
     void createConnection();
     void login(String username, String password);
-    JSONCollection getCollection(String databaseName,String collectionName);
-    JSONDocument getDocument(String databaseName,String collectionName,String documentId);
-    DocumentEntity getProperty(String databaseName,String collectionName, String documentId, String propertyName);
-    List<DocumentEntity> getProperties(String databaseName,String collectionName, String property);
+    JSONArray getCollection(String databaseName, String collectionName);
+    JSONObject getDocument(String databaseName, String collectionName, String documentId);
+    Object getProperty(String databaseName,String collectionName, String documentId, String propertyName);
+    List<JSONObject> getProperties(String databaseName,String collectionName, String property,String value);
 
     void createDatabase(String name);
     void createCollection(String databaseName, String collectionName);
     void deleteDatabase(String databaseName);
     void deleteCollection(String databaseName, String collectionName);
-    void writeDocument(String databaseName,String collectionName,JSONDocument document);
-    void updateDocument(String databaseName,String collectionName, String documentId,String propertyName, DocumentEntity newValue);
+    void writeDocument(String databaseName,String collectionName,JSONObject document);
+    void updateDocument(String databaseName,String collectionName, String documentId,String propertyName,JSONObject newValue);
     void deleteDocument(String databaseName,String collectionName, String documentId);
 
     void createIndex(String databaseName, String collectionName, String indexName);

@@ -1,12 +1,16 @@
 package driver;
 
 import documents.entities.Packet;
-import driver.documentEntities.DocumentEntity;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ClientHandler implements ClientInterface {
@@ -71,41 +75,127 @@ public class ClientHandler implements ClientInterface {
   }
 
   @Override
-  public JSONCollection getCollection(String databaseName, String collectionName) {
+  public JSONArray getCollection(String databaseName, String collectionName) {
+    if (chainOfResponsibility()
+            && userAuthority.contains("r")
+            && databaseName != null
+            && collectionName != null) {
+      String msg = "getCollection";
+      try {
+        objectOutputStream.writeObject(new Packet(msg));
+        objectOutputStream.writeObject(new Packet(databaseName));
+        objectOutputStream.writeObject(new Packet(collectionName));
+
+        JSONArray collection =  (JSONArray) objectInputStream.readObject();
+        if(collection==null){
+          System.out.println("collection is null");
+          throw new IllegalArgumentException();
+        }
+        System.out.println("collection received");
+        return collection;
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      } catch (ClassNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+    }
+
     return null;
   }
 
   @Override
-  public JSONDocument getDocument(String databaseName, String collectionName, String documentId) {
+  public JSONObject getDocument(String databaseName, String collectionName, String documentId) {
+
     if (chainOfResponsibility()
+        && userAuthority.contains("r")
         && databaseName != null
         && collectionName != null
         && documentId != null) {
-      String msg = "getDocument" + "\n" + databaseName + "\n" + collectionName + "\n" + documentId;
+      String msg = "getDocumentById";
       try {
         objectOutputStream.writeObject(new Packet(msg));
-        JSONDocument doc = (JSONDocument) objectInputStream.readObject();
+        objectOutputStream.writeObject(new Packet(databaseName));
+        objectOutputStream.writeObject(new Packet(collectionName));
+        objectOutputStream.writeObject(new Packet(documentId));
+        JSONObject doc =  (JSONObject) objectInputStream.readObject();
+
+        if(doc==null){
+          System.out.println("document is null");
+          throw new IllegalArgumentException();
+        }
+        System.out.println("Document received");
         return doc;
       } catch (IOException e) {
-        System.out.println("Error getting document");
-        return null;
+        System.out.println("Error getting document, IO exception");
+        throw new RuntimeException();
       } catch (ClassNotFoundException e) {
-        System.out.println("Error getting document");
-        return null;
+        System.out.println("Error getting document, class not found");
+        throw new RuntimeException();
+      }
+
+    }
+    System.out.println("Error getting document");
+    throw new RuntimeException();
+
+  }
+
+  @Override
+  public Object getProperty(
+      String databaseName, String collectionName, String documentId, String propertyName) {
+    if (chainOfResponsibility()
+            && userAuthority.contains("r")
+            && databaseName != null
+            && collectionName != null
+            && documentId != null
+            && propertyName !=null) {
+      String msg = "getProperty";
+      try {
+        objectOutputStream.writeObject(new Packet(msg));
+        objectOutputStream.writeObject(new Packet(databaseName));
+        objectOutputStream.writeObject(new Packet(collectionName));
+        objectOutputStream.writeObject(new Packet(documentId));
+        objectOutputStream.writeObject(new Packet(propertyName));
+        Object obj = objectInputStream.readObject();
+        return obj;
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      } catch (ClassNotFoundException e) {
+        throw new RuntimeException(e);
       }
     }
     return null;
   }
 
   @Override
-  public DocumentEntity getProperty(
-      String databaseName, String collectionName, String documentId, String propertyName) {
-    return null;
-  }
-
-  @Override
-  public List<DocumentEntity> getProperties(
-      String databaseName, String collectionName, String property) {
+  public JSONArray getProperties(
+      String databaseName, String collectionName, String property,String value) {
+    if (chainOfResponsibility()
+            && userAuthority.contains("r")
+            && databaseName != null
+            && collectionName != null
+            && property != null
+            && value !=null) {
+      String msg = "getAllDocumentsWithProperty";
+      try {
+        objectOutputStream.writeObject(new Packet(msg));
+        objectOutputStream.writeObject(new Packet(databaseName));
+        objectOutputStream.writeObject(new Packet(collectionName));
+        objectOutputStream.writeObject(new Packet(property));
+        objectOutputStream.writeObject(new Packet(value));
+        JSONArray jsonArray = new JSONArray();
+        Packet packet = (Packet) objectInputStream.readObject();
+        int count = Integer.valueOf(packet.getMessage());
+        System.out.println(count);
+        for(int i =0;i<count;i++){
+          jsonArray.add((JSONObject) objectInputStream.readObject());
+        }
+        return jsonArray;
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      } catch (ClassNotFoundException e) {
+        throw new RuntimeException(e);
+      }
+    }
     return null;
   }
 
@@ -122,7 +212,7 @@ public class ClientHandler implements ClientInterface {
   public void deleteCollection(String databaseName, String collectionName) {}
 
   @Override
-  public void writeDocument(String databaseName, String collectionName, JSONDocument document) {}
+  public void writeDocument(String databaseName, String collectionName, JSONObject document) {}
 
   @Override
   public void updateDocument(
@@ -130,7 +220,7 @@ public class ClientHandler implements ClientInterface {
       String collectionName,
       String documentId,
       String propertyName,
-      DocumentEntity newValue) {}
+      JSONObject newValue) {}
 
   @Override
   public void deleteDocument(String databaseName, String collectionName, String documentId) {}
