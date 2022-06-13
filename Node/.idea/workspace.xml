@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java">
-      <change beforePath="$PROJECT_DIR$/../Client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/JSONCollection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/JSONDocument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/ArrayEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/BooleanEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/DecimalEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/DocumentEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/DocumentEntityType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/IntegerEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/NullEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/ObjectEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/documentEntities/StringEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" afterDir="false" />
-    </list>
+    <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,24 +33,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/bayta/Desktop/Final-project-Atypon/Node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/server" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mbayt\OneDrive\Desktop\Final-project-Atypon\Node\src\main\resources\databases" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="server" />
+      <recent name="utilities" />
       <recent name="documents" />
       <recent name="documents.entities" />
     </key>
@@ -160,6 +130,7 @@
       <workItem from="1654875559409" duration="300000" />
       <workItem from="1654878783736" duration="4629000" />
       <workItem from="1654932935838" duration="16777000" />
+      <workItem from="1655130041429" duration="9449000" />
     </task>
     <task id="LOCAL-00001" summary="Added Node.java">
       <created>1654188495885</created>

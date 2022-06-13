@@ -1,4 +1,5 @@
 import org.junit.Test;
+import server.Server;
 
 import java.util.Scanner;
 

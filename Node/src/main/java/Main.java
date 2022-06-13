@@ -1,11 +1,8 @@
 
 
-import java.io.*;
+import server.Server;
+
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.RandomAccessFile;
-import java.util.Scanner;
 
 public class Main {
 

@@ -1,8 +1,10 @@
+package server;
+
 import documents.entities.Packet;
 import documents.entities.User;
 import org.json.simple.JSONObject;
+import utilities.FileHandler;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
