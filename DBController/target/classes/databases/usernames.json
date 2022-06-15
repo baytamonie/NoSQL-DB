@@ -1,0 +1,13 @@
+[
+  {
+  "username" : "bayta",
+  "password": "123",
+  "permissions": "rw"
+}
+,
+{
+  "username" : "atypon",
+  "password": "123",
+  "permissions": "r"
+}
+]

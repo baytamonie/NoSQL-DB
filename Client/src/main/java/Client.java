@@ -20,7 +20,7 @@ public class Client {
     }
     Object obj = clientHandler.getProperty("database1","collection1","129124","name");
     System.out.println(obj.toString());
-    clientHandler.getProperties("database1","collection1","name","Mohammad Betamony");
+//    clientHandler.getProperties("database1","collection1","name","Mohammad Betamony");
 
   }
 }

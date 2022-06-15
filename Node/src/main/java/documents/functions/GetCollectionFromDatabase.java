@@ -3,7 +3,7 @@ package documents.functions;
 import documents.entities.Packet;
 import org.json.simple.JSONArray;
 import utilities.DocumentUtils;
-import utilities.FileHandler;
+import utilities.FileUtils;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,12 +16,12 @@ public class GetCollectionFromDatabase implements DocumentFunction {
         try {
             String dbName = ((Packet) inputStream.readObject()).getMessage();
             String collectionName = ((Packet) inputStream.readObject()).getMessage();
-            if (DocumentUtils.checkIfCollectionExists(dbName, collectionName))
+            if (!DocumentUtils.checkIfCollectionExists(dbName, collectionName))
                 return false;
             String dataPath =
                     DocumentUtils.pathBuilder(
                             dbName, collectionName, "data.json");
-            JSONArray jsonArray = FileHandler.loadData(dataPath);
+            JSONArray jsonArray = FileUtils.loadData(dataPath);
             if (jsonArray == null)
                 return false;
             outputStream.writeObject(jsonArray);

@@ -5,7 +5,7 @@ import documents.IdsObject;
 import documents.entities.Packet;
 import org.json.simple.JSONObject;
 import utilities.DocumentUtils;
-import utilities.FileHandler;
+import utilities.FileUtils;
 
 
 import java.io.IOException;
@@ -31,13 +31,13 @@ public class GetDocumentById implements DocumentFunction {
             return false;
 
             String idsDocPath = DocumentUtils.pathBuilder(dbName,collectionName,"ids.json");
-            HashMap<String, IdsObject> ids = FileHandler.loadIdsJSON(idsDocPath);
+            HashMap<String, IdsObject> ids = FileUtils.loadIdsJSON(idsDocPath);
             IdsObject idsObject = ids.get(documentId);
             if(idsObject == null)
                 return false;
             String dataPath = DocumentUtils.pathBuilder(dbName,collectionName,"data.json");
             JSONObject jsonObject =
-                    FileHandler.getObjectRandomAccessFile(dataPath, idsObject.getBegin(), idsObject.getEnd());
+                    FileUtils.getObjectRandomAccessFile(dataPath, idsObject.getBegin(), idsObject.getEnd());
             if(jsonObject==null)
                 return false;
             outputStream.writeObject(jsonObject);

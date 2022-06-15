@@ -4,7 +4,7 @@ import documents.IdsObject;
 import documents.entities.Packet;
 import org.json.simple.JSONObject;
 import utilities.DocumentUtils;
-import utilities.FileHandler;
+import utilities.FileUtils;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,7 +23,7 @@ public class GetPropertyValueFromDocument implements DocumentFunction {
                 return false;
                 String idsDocPath =
                         DocumentUtils.pathBuilder(dbName, collectionName, "ids.json");
-                HashMap<String, IdsObject> ids = FileHandler.loadIdsJSON(idsDocPath);
+                HashMap<String, IdsObject> ids = FileUtils.loadIdsJSON(idsDocPath);
                 String docPath =
                         DocumentUtils.pathBuilder(
                                 dbName, collectionName, "data.json");
@@ -31,7 +31,7 @@ public class GetPropertyValueFromDocument implements DocumentFunction {
                 if(idsObject==null)
                     return false;
                 JSONObject jsonObject =
-                        FileHandler.getObjectRandomAccessFile(docPath, idsObject.getBegin(), idsObject.getEnd());
+                        FileUtils.getObjectRandomAccessFile(docPath, idsObject.getBegin(), idsObject.getEnd());
                 if(jsonObject==null)
                     return false;
                 Object obj = jsonObject.get(propertyName);

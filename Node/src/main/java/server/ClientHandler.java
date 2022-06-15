@@ -1,23 +1,14 @@
 package server;
 
-import documents.IdsObject;
 import documents.entities.Packet;
 import documents.entities.User;
 import documents.functions.DocumentFunction;
 import documents.functions.DocumentFunctionsFactory;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import server.Server;
-import utilities.DocumentUtils;
-import utilities.FileHandler;
 
-import javax.print.Doc;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.HashMap;
 
 public class ClientHandler implements Runnable {
 
@@ -54,10 +45,16 @@ public class ClientHandler implements Runnable {
        DocumentFunction functionToExecute = documentFunctionsFactory.createDocumentFunction(command);
        boolean didFunctionExecute = functionToExecute.execute(objectInputStreamClient,objectOutputStreamClient);
        if(!didFunctionExecute){
-         objectOutputStreamClient.writeObject(new Packet("-1"));
+         objectOutputStreamClient.writeObject(null);
        }
       } catch (IOException e) {
+        try {
+          client.close();
+        } catch (IOException ex) {
+          throw new RuntimeException(ex);
+        }
         e.printStackTrace();
+
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }

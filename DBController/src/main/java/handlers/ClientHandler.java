@@ -28,9 +28,9 @@ public class ClientHandler implements Runnable{
         }
         else{
             try{
-                objectOutputStream.writeObject(new Packet(String.valueOf(Controller.nodes.get(0).getPort())));
                 Controller.nodes.stream().sorted().collect(Collectors.toList());
                 System.out.println("Client connected at node "+(Controller.nodes.get(0).getPort()));
+                objectOutputStream.writeObject(new Packet(String.valueOf(Controller.nodes.get(0).getPort())));
             }
             catch (IOException e){
                 System.out.println("Error connecting client to node");

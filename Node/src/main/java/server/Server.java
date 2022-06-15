@@ -3,7 +3,7 @@ package server;
 import documents.entities.Packet;
 import documents.entities.User;
 import org.json.simple.JSONObject;
-import utilities.FileHandler;
+import utilities.FileUtils;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -26,7 +26,7 @@ public class Server {
   private static final String usersPath = "src/main/resources/databases/usernames.json";
 
   private void loadUsers() {
-    List<JSONObject> usersJSON = FileHandler.loadData(usersPath);
+    List<JSONObject> usersJSON = FileUtils.loadData(usersPath);
     for (JSONObject userJSON : usersJSON) {
       User user =
           new User(
@@ -100,8 +100,8 @@ public class Server {
       objectOutputStream = new ObjectOutputStream(controller.getOutputStream());
       Packet controllerConnection = new Packet("nodeConnection");
       Packet sendPortNumber = new Packet(String.valueOf(port));
-      objectOutputStream.writeObject(controllerConnection);
-      objectOutputStream.writeObject(sendPortNumber);
+      objectOutputStream.writeObject((Object)controllerConnection);
+      objectOutputStream.writeObject((Object)sendPortNumber);
 
     } catch (IOException e) {
       System.out.println("Error giving port to controller, try again please");

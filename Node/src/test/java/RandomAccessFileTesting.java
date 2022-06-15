@@ -87,11 +87,11 @@ public class RandomAccessFileTesting  {
     public void readRandomAccessFile(){
         String dataPath = "src/main/resources/databases/database1/collection1/data.json";
         long filePointer1 = 1;
-        long objectEnd1 = 107;
-        long filePointer2 = 108;
-        long objectEnd2 = 205;
-        long filePointer3 = 208;
-        long objectEnd3 =291;
+        long objectEnd1 = 100;
+        long filePointer2 = 102;
+        long objectEnd2 = 190;
+        long filePointer3 = 192;
+        long objectEnd3 =270;
         boolean endOfFile = false;
         String s1="";
         String s2="";
@@ -104,7 +104,7 @@ public class RandomAccessFileTesting  {
                 s1+=c;
                 i++;
             }
-            System.out.println(s1);
+//            System.out.println(s1);
             i = filePointer2;
             randomFile.seek(filePointer2);
 //
@@ -113,7 +113,7 @@ public class RandomAccessFileTesting  {
                 s2+=c;
                 i++;
             }
-            System.out.println(s2);
+//            System.out.println(s2);
             randomFile.seek(filePointer3);
             i=filePointer3;
             while(i!=objectEnd3){

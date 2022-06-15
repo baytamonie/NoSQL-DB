@@ -5,15 +5,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import sun.misc.IOUtils;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
-public class FileHandler {
+public class FileUtils {
 
 
     private static final JSONParser jsonParser = new JSONParser();
