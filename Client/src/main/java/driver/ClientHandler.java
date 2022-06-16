@@ -200,10 +200,35 @@ public class ClientHandler implements ClientInterface {
   }
 
   @Override
-  public void createDatabase(String name) {}
+  public void createDatabase(String name) {
+    if(name==null)
+      throw new IllegalArgumentException();
+    try {
+      objectOutputStream.writeObject(new Packet("createDatabase"));
+      objectOutputStream.writeObject(new Packet(name));
+      Packet confirmation = (Packet)objectInputStream.readObject();
+      System.out.println(confirmation.getMessage());
+    } catch (IOException | ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
 
   @Override
-  public void createCollection(String databaseName, String collectionName) {}
+  public void createCollection(String databaseName, String collectionName,JSONObject schema) {
+    if(databaseName==null ||collectionName == null)
+      throw new IllegalArgumentException();
+    try {
+      objectOutputStream.writeObject(new Packet("createCollection"));
+      objectOutputStream.writeObject(new Packet(databaseName));
+      objectOutputStream.writeObject(new Packet(collectionName));
+      objectOutputStream.writeObject(schema);
+      Packet confirmation = (Packet)objectInputStream.readObject();
+      System.out.println(confirmation.getMessage());
+    } catch (IOException | ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+  }
 
   @Override
   public void deleteDatabase(String databaseName) {}
@@ -212,7 +237,22 @@ public class ClientHandler implements ClientInterface {
   public void deleteCollection(String databaseName, String collectionName) {}
 
   @Override
-  public void writeDocument(String databaseName, String collectionName, JSONObject document) {}
+  public void writeDocument(String databaseName, String collectionName, JSONObject document) {
+
+    if(databaseName==null ||collectionName == null||document == null)
+      throw new IllegalArgumentException();
+    try {
+      objectOutputStream.writeObject(new Packet("addDocument"));
+      objectOutputStream.writeObject(new Packet(databaseName));
+      objectOutputStream.writeObject(new Packet(collectionName));
+      objectOutputStream.writeObject(document);
+      Packet confirmation = (Packet)objectInputStream.readObject();
+      System.out.println(confirmation.getMessage());
+    } catch (IOException | ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+
+  }
 
   @Override
   public void updateDocument(

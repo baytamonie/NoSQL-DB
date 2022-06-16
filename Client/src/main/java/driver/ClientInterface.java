@@ -15,7 +15,7 @@ public interface ClientInterface {
     List<JSONObject> getProperties(String databaseName,String collectionName, String property,String value);
 
     void createDatabase(String name);
-    void createCollection(String databaseName, String collectionName);
+    void createCollection(String databaseName, String collectionName,JSONObject schema);
     void deleteDatabase(String databaseName);
     void deleteCollection(String databaseName, String collectionName);
     void writeDocument(String databaseName,String collectionName,JSONObject document);

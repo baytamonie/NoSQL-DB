@@ -4,10 +4,11 @@ import controller.Controller;
 import documents.entities.Node;
 import documents.entities.Packet;
 import documents.functions.DatabaseFunctionsFactory;
+import documents.functions.DatabaseWriteFunction;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class NodeHandler implements Runnable {
@@ -15,16 +16,19 @@ public class NodeHandler implements Runnable {
   private final Socket socket;
   private ObjectInputStream objectInputStream;
   private final DatabaseFunctionsFactory functionsFactory;
+  private final ObjectOutputStream objectOutputStream;
+  private Node node;
 
-  public NodeHandler(Socket socket, ObjectInputStream objectInputStream) {
+  public NodeHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream) {
     this.socket = socket;
     this.objectInputStream = objectInputStream;
+    this.objectOutputStream = objectOutputStream;
     functionsFactory = new DatabaseFunctionsFactory();
   }
   public void getNodePortNumber(){
     try {
       Packet portNumberPacket = (Packet) objectInputStream.readObject();
-      Node node = new Node(Integer.valueOf(portNumberPacket.getMessage()));
+      this.node = new Node(Integer.valueOf(portNumberPacket.getMessage()));
       System.out.println("Node received. Node is at port: " + node.getPort());
       Controller.nodes.add(node);
     } catch (IOException e) {
@@ -35,13 +39,10 @@ public class NodeHandler implements Runnable {
 
   }
   public void updateLoadForANode(Node node){
-    Packet loadString = null;
     try {
-      loadString = (Packet) objectInputStream.readObject();
+      Packet loadString = (Packet) objectInputStream.readObject();
       node.setLoad(Integer.valueOf(loadString.getMessage()));
       System.out.println("load updated for node " + node.getPort());
-
-
     } catch (IOException e) {
       e.printStackTrace();
     } catch (ClassNotFoundException e) {
@@ -52,7 +53,7 @@ public class NodeHandler implements Runnable {
 
   @Override
   public void run() {
-    Node node = null;
+
     try {
       getNodePortNumber();
       while (!socket.isClosed()) {
@@ -61,16 +62,32 @@ public class NodeHandler implements Runnable {
           case "load":
             updateLoadForANode(node);
             break;
-          case "CreateDataBase":
+          default:
+            DatabaseWriteFunction databaseWriteFunction = functionsFactory.getDataBaseFunction(packet.getMessage());
+            System.out.println("NODE HANDLer:  "+ packet.getMessage());
+            if(databaseWriteFunction!=null){
+            boolean didFunctionExecute =   databaseWriteFunction.execute(objectInputStream);
+              System.out.println(packet.getMessage());
+            if(didFunctionExecute)
+              objectOutputStream.writeObject(new Packet("true"));
+            else
+              objectOutputStream.writeObject(new Packet("false"));
 
+            }
         }
-
       }
     } catch (Exception e) {
       e.printStackTrace();
-      if(node!=null)
+      if(node!=null){
         Controller.nodes.remove(node);
         System.out.println("node "+node.getPort()+" disconnected");
+      }
+      try {
+        socket.close();
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+
     }
   }
 }

@@ -11,7 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-public class GetPropertyValueFromDocument implements DocumentFunction {
+public class GetPropertyValueFromDocument implements DocumentReadFunctions {
     @Override
     public boolean execute(ObjectInputStream inputStream, ObjectOutputStream outputStream) {
         try {

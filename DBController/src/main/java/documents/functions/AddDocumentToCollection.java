@@ -15,27 +15,21 @@ public class AddDocumentToCollection implements DatabaseWriteFunction{
             String dbName = ((Packet) objectInputStream.readObject()).getMessage();
             String collectionName = ((Packet) objectInputStream.readObject()).getMessage();
             JSONObject objectToAdd = (JSONObject) objectInputStream.readObject();
+            String path = "src/main/resources/databases/" + dbName +'/' +collectionName;
+            if(!FileUtils.checkIfFileOrDirectoryExists(path)){
+                return false;
+            }
             String key = DocumentsUtils.generateKey(dbName,collectionName);
             if(objectToAdd.containsKey("_id"))
                 objectToAdd.replace("_id",key);
             else
                 objectToAdd.put("_id",key);
-            String path = "src/main/resources/databases/" + dbName +'/' +collectionName;
-            if(!FileUtils.checkIfFileOrDirectoryExists(path)){
-                return false;
-            }
             if(!DocumentsUtils.checkIfSchemaMatches(path+"/schema.json",objectToAdd))
                 return false;
 
-            if(!FileUtils.writeJsonToEndOfFile(objectToAdd,path+"/data.json"))
-                return false;
+            return FileUtils.writeJsonToEndOfFile(objectToAdd, path ,key);
 
-            return true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }

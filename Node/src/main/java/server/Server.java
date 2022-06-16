@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import utilities.FileUtils;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,6 +25,7 @@ public class Server {
   public static Server server = new Server();
   public static List<User> userList;
   private static final String usersPath = "src/main/resources/databases/usernames.json";
+  private  ObjectInputStream objectInputStreamController;
 
   private void loadUsers() {
     List<JSONObject> usersJSON = FileUtils.loadData(usersPath);
@@ -59,7 +61,6 @@ public class Server {
 
   public void startNode() {
     sendPortToController();
-
     refreshNode();
     Thread checkUserInput =
         new Thread(
@@ -73,7 +74,7 @@ public class Server {
         load++;
         System.out.println(load);
         System.out.println("Accepted client");
-        Thread clientThread = new Thread(new ClientHandler(client, controller,objectOutputStream));
+        Thread clientThread = new Thread(new ClientHandler(client, controller,objectOutputStream,objectInputStreamController));
         clientThread.start();
       } catch (IOException e) {
         System.out.println("Error accepting clients, try rebooting this node");
@@ -98,6 +99,8 @@ public class Server {
     try {
       controller = new Socket("localhost", 8080);
       objectOutputStream = new ObjectOutputStream(controller.getOutputStream());
+      objectInputStreamController = new ObjectInputStream(controller.getInputStream());
+
       Packet controllerConnection = new Packet("nodeConnection");
       Packet sendPortNumber = new Packet(String.valueOf(port));
       objectOutputStream.writeObject((Object)controllerConnection);

@@ -14,7 +14,7 @@ public class Controller implements Serializable {
 
   private final int port;
   private ServerSocket serverSocket;
-  private DataInputStream dataInputStream;
+
   private ObjectInputStream objectInputStream;
   private ObjectOutputStream objectOutputStream;
 
@@ -44,10 +44,9 @@ public class Controller implements Serializable {
         objectInputStream = new ObjectInputStream(socket.getInputStream());
         objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         Packet socketType = (Packet) objectInputStream.readObject();
-
         Thread socketHandler = null;
         if (socketType.getMessage().equals("nodeConnection"))
-          socketHandler = new Thread(new NodeHandler(socket,objectInputStream));
+          socketHandler = new Thread(new NodeHandler(socket,objectInputStream,objectOutputStream));
         else if (socketType.getMessage().equals("clientConnection"))
           socketHandler = new Thread(new ClientHandler(socket,objectOutputStream));
 

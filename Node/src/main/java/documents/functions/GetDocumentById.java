@@ -13,7 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-public class GetDocumentById implements DocumentFunction {
+public class GetDocumentById implements DocumentReadFunctions {
 
 
     @Override

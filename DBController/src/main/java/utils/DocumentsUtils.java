@@ -35,7 +35,10 @@ public class DocumentsUtils {
                     return false;
             }
             if(numOfItemsInSchema==numOfJsonObjectKeys)
+            {
+        System.out.println(numOfItemsInSchema);
                 return true;
+             }
             else
                 return false;
         } catch (Exception e) {

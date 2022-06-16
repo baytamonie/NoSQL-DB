@@ -18,10 +18,7 @@ public class DeleteDataBase implements DatabaseWriteFunction{
             }
             return false;
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }

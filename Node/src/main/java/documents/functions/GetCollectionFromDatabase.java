@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class GetCollectionFromDatabase implements DocumentFunction {
+public class GetCollectionFromDatabase implements DocumentReadFunctions {
     @Override
     public boolean execute(ObjectInputStream inputStream, ObjectOutputStream outputStream) {
 

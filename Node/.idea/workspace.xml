@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java" />
+    <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java">
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/AddDocumentToCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/AddDocumentToCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseFunctionsFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseFunctionsFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/idsPointer" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/resources/databases/idsPointer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/AddDocumentToCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/AddDocumentToCollection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateCollection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateDataBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteCollection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteDataBase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/utils/DocumentsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/utils/DocumentsUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/test-classes/SchemaCheck.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/test-classes/SchemaCheck.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -134,6 +159,9 @@
       <workItem from="1655130041429" duration="9449000" />
       <workItem from="1655147500118" duration="7039000" />
       <workItem from="1655306958759" duration="1015000" />
+      <workItem from="1655312093571" duration="38000" />
+      <workItem from="1655312182231" duration="67000" />
+      <workItem from="1655312412832" duration="7556000" />
     </task>
     <task id="LOCAL-00001" summary="Added Node.java">
       <created>1654188495885</created>

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import server.Server;
-public class Login implements DocumentFunction {
+public class Login implements DocumentReadFunctions {
 
     @Override
     public boolean execute(ObjectInputStream inputStream, ObjectOutputStream outputStream) {

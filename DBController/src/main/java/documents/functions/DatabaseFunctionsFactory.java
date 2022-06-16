@@ -4,10 +4,12 @@ public class DatabaseFunctionsFactory {
 
   public DatabaseWriteFunction getDataBaseFunction(String function) {
     switch (function) {
-      case "CreateDataBase":
+      case "createDatabase":
         return new CreateDataBase();
-      case "CreateCollection":
+      case "createCollection":
         return new CreateCollection();
+      case "addDocument":
+        return new AddDocumentToCollection();
       case "DeleteDataBase":
         return new DeleteDataBase();
       case "DeleteCollection":

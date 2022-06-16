@@ -1,11 +1,8 @@
 package documents.functions;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+public class DocumentReadFunctionsFactory {
 
-public class DocumentFunctionsFactory {
-
-    public DocumentFunction createDocumentFunction(String function){
+    public DocumentReadFunctions createDocumentFunction(String function){
         if( function == null || function.isEmpty())
             throw new IllegalArgumentException();
         switch (function){

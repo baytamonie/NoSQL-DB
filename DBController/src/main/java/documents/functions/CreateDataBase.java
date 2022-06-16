@@ -16,10 +16,7 @@ public class CreateDataBase implements DatabaseWriteFunction{
             String path = "src/main/resources/databases/"+dbName;
             FileUtils.makeDirectory(path);
             return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }
