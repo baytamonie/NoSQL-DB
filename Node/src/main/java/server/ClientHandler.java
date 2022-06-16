@@ -53,6 +53,7 @@ public class ClientHandler implements Runnable {
       try {
 
        String command = ((Packet) objectInputStreamClient.readObject()).getMessage();
+        System.out.println(command);
        if(command.equals("createDatabase") ||command.equals("createCollection")||command.equals("addDocument")){
         DocumentWriteFunctions functionToExecute = documentWriteFunctionsFactory.getFunction(command);
         functionToExecute.execute(objectInputStreamClient,objectOutputStreamClient,objectInputStreamController,objectOutputStreamController);

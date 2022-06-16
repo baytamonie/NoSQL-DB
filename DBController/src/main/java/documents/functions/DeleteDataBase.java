@@ -1,16 +1,18 @@
 package documents.functions;
 
-import documents.entities.Packet;
 import utils.FileUtils;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-
 public class DeleteDataBase implements DatabaseWriteFunction{
+
+    private final String dbName;
+
+    public DeleteDataBase(String dbName) {
+        this.dbName = dbName;
+    }
+
     @Override
-    public boolean execute(ObjectInputStream objectInputStream) {
-        try {
-            String dbName = ((Packet) objectInputStream.readObject()).getMessage();
+    public boolean execute() {
+
             String path = "src/main/resources/databases/" + dbName;
             if (FileUtils.checkIfFileOrDirectoryExists(path)) {
                 FileUtils.deleteDirectory(path);
@@ -18,9 +20,6 @@ public class DeleteDataBase implements DatabaseWriteFunction{
             }
             return false;
 
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
         }
-    }
+
 }

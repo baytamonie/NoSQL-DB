@@ -23,7 +23,7 @@ public class NodeHandler implements Runnable {
     this.socket = socket;
     this.objectInputStream = objectInputStream;
     this.objectOutputStream = objectOutputStream;
-    functionsFactory = new DatabaseFunctionsFactory();
+    functionsFactory = new DatabaseFunctionsFactory(objectInputStream);
   }
   public void getNodePortNumber(){
     try {
@@ -66,7 +66,7 @@ public class NodeHandler implements Runnable {
             DatabaseWriteFunction databaseWriteFunction = functionsFactory.getDataBaseFunction(packet.getMessage());
             System.out.println("NODE HANDLer:  "+ packet.getMessage());
             if(databaseWriteFunction!=null){
-            boolean didFunctionExecute =   databaseWriteFunction.execute(objectInputStream);
+            boolean didFunctionExecute =   databaseWriteFunction.execute();
               System.out.println(packet.getMessage());
             if(didFunctionExecute)
               objectOutputStream.writeObject(new Packet("true"));

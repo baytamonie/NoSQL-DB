@@ -1,18 +1,20 @@
 package documents.functions;
 
-import documents.entities.Packet;
 import utils.FileUtils;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 public class DeleteCollection implements DatabaseWriteFunction {
 
+    private final String dbName;
+    private final String collectionName;
+
+    public DeleteCollection(String dbName, String collectionName) {
+        this.dbName = dbName;
+        this.collectionName = collectionName;
+    }
+
     @Override
-    public boolean execute(ObjectInputStream objectInputStream) {
-        try {
-            String dbName = ((Packet) objectInputStream.readObject()).getMessage();
-            String collectionName = ((Packet) objectInputStream.readObject()).getMessage();
+    public boolean execute() {
+
             String path = "src/main/resources/databases/" + dbName + '/' + collectionName;
             if (FileUtils.checkIfFileOrDirectoryExists(path)) {
                 FileUtils.deleteDirectory(path);
@@ -20,9 +22,5 @@ public class DeleteCollection implements DatabaseWriteFunction {
             }
             return false;
 
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
         }
-    }
 }

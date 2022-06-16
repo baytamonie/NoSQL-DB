@@ -1,23 +1,27 @@
 package documents.functions;
 
-import documents.entities.Packet;
 import org.json.simple.JSONObject;
 import utils.FileUtils;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.RandomAccessFile;
 
 public class CreateCollection implements DatabaseWriteFunction {
 
-  @Override
-  public boolean execute(ObjectInputStream objectInputStream) {
-    try {
-      String dbName = ((Packet) objectInputStream.readObject()).getMessage();
-      String collectionName = ((Packet) objectInputStream.readObject()).getMessage();
-      String path = "src/main/resources/databases/" + dbName;
-      JSONObject schema = (JSONObject) objectInputStream.readObject();
+  private final String dbName;
+  private final String collectionName;
+  private final JSONObject schema;
 
+  public CreateCollection(String dbName, String collectionName, JSONObject schema) {
+    this.dbName = dbName;
+    this.collectionName = collectionName;
+    this.schema = schema;
+  }
+
+  @Override
+  public boolean execute() {
+
+      String path = "src/main/resources/databases/" + dbName;
       if (FileUtils.checkIfFileOrDirectoryExists(path)) {
         path = path + '/' + collectionName;
         if(!FileUtils.checkIfFileOrDirectoryExists(path))
@@ -25,10 +29,7 @@ public class CreateCollection implements DatabaseWriteFunction {
         return true;
       }
       return false;
-    } catch (IOException | ClassNotFoundException e) {
-      e.printStackTrace();
-      return false;
-    }
+
   }
 
   private boolean createCollectionFiles(String path,JSONObject schema){

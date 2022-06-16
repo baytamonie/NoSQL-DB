@@ -15,8 +15,9 @@ public class FileUtils {
     private static final JSONParser jsonParser = new JSONParser();
 
     public static JSONArray loadData(String path){
+        Object dataObject = null;
         try(FileReader fileReader = new FileReader(path)){
-            Object dataObject = jsonParser.parse(fileReader);
+             dataObject = jsonParser.parse(fileReader);
             JSONArray data = (JSONArray) dataObject;
             fileReader.close();
             return data;
@@ -26,6 +27,11 @@ public class FileUtils {
             throw new RuntimeException(e);
         } catch (ParseException e) {
             throw new RuntimeException(e);
+        }
+        catch (ClassCastException e){
+            JSONArray jsonArray = new JSONArray();
+            jsonArray.add(dataObject);
+            return jsonArray;
         }
     }
     public static JSONObject getObjectRandomAccessFile(String path, long startIndex, long endIndex){
@@ -56,7 +62,6 @@ public class FileUtils {
                 IdsObject idsObject = new IdsObject((Long)(((JSONObject)obj).get("begin")),(Long)(((JSONObject)obj).get("end")),(String)(((JSONObject)obj).get("_id")));
                 list.put((String)(((JSONObject)obj).get("_id")),idsObject);
             }
-
             fileReader.close();
             return list;
         } catch (FileNotFoundException e) {

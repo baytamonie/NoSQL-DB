@@ -1,26 +1,20 @@
 package documents.functions;
 
-import documents.entities.Packet;
 import utils.FileUtils;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 public class CreateDataBase implements DatabaseWriteFunction{
 
-    @Override
-    public boolean execute(ObjectInputStream objectInputStream){
+    private final String dbName;
 
-        try {
-            String dbName = ((Packet) objectInputStream.readObject()).getMessage();
+    public CreateDataBase(String dbName) {
+        this.dbName = dbName;
+    }
+    @Override
+    public boolean execute(){
+
             String path = "src/main/resources/databases/"+dbName;
             FileUtils.makeDirectory(path);
             return true;
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-
     }
 
 }

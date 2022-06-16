@@ -52,7 +52,7 @@ public class Controller implements Serializable {
 
         if (socketHandler != null) socketHandler.start();
       } catch (Exception e) {
-        System.out.println(e.getMessage());
+        e.printStackTrace();
       }
     }
   }
