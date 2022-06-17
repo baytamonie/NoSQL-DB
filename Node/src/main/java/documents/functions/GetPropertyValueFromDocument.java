@@ -12,13 +12,24 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 public class GetPropertyValueFromDocument implements DocumentReadFunctions {
+
+    private final String dbName;
+    private final String collectionName;
+    private final String documentId;
+    private final String propertyName;
+
+
+    public GetPropertyValueFromDocument(String dbName, String collectionName, String documentId, String propertyName) {
+        this.dbName = dbName;
+        this.collectionName = collectionName;
+        this.documentId = documentId;
+        this.propertyName = propertyName;
+    }
+
     @Override
-    public boolean execute(ObjectInputStream inputStream, ObjectOutputStream outputStream) {
+    public boolean execute( ObjectOutputStream outputStream) {
         try {
-            String dbName = ((Packet)inputStream.readObject()).getMessage();
-            String collectionName = ((Packet)inputStream.readObject()).getMessage();
-            String documentId = ((Packet) inputStream.readObject()).getMessage();
-            String propertyName = ((Packet) inputStream.readObject()).getMessage();
+
             if (!DocumentUtils.checkIfCollectionExists(dbName, collectionName))
                 return false;
                 String idsDocPath =
@@ -38,9 +49,6 @@ public class GetPropertyValueFromDocument implements DocumentReadFunctions {
                 outputStream.writeObject(obj);
                 return true;
         } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }

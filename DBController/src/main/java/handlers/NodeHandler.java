@@ -64,7 +64,7 @@ public class NodeHandler implements Runnable {
             break;
           default:
             DatabaseWriteFunction databaseWriteFunction = functionsFactory.getDataBaseFunction(packet.getMessage());
-            System.out.println("NODE HANDLer:  "+ packet.getMessage());
+
             if(databaseWriteFunction!=null){
             boolean didFunctionExecute =   databaseWriteFunction.execute();
               System.out.println(packet.getMessage());

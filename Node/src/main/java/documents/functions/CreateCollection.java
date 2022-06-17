@@ -7,6 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class CreateCollection implements DocumentWriteFunctions{
+
+
+
     @Override
     public boolean execute(ObjectInputStream clientInputStream, ObjectOutputStream clientOutputStream, ObjectInputStream controllerInputStream, ObjectOutputStream controllerOutputStream) {
         try{

@@ -3,15 +3,11 @@ package driver;
 import documents.entities.Packet;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class ClientHandler implements ClientInterface {
 
@@ -25,8 +21,7 @@ public class ClientHandler implements ClientInterface {
   public static boolean connectionEstablished;
 
   private boolean chainOfResponsibility() {
-    if (connectionEstablished) return true;
-    else return false;
+    return connectionEstablished;
   }
 
   public ClientHandler() {
@@ -67,11 +62,13 @@ public class ClientHandler implements ClientInterface {
       }
 
 
-    } catch (IOException e) {
-      System.out.println("try again, bad login");
-    } catch (ClassNotFoundException e) {
+    } catch (IOException | ClassNotFoundException e) {
       System.out.println("try again, bad login");
     }
+  }
+
+  public String getUserAuthority() {
+    return userAuthority;
   }
 
   @Override
@@ -93,9 +90,7 @@ public class ClientHandler implements ClientInterface {
         }
         System.out.println("collection received");
         return collection;
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      } catch (ClassNotFoundException e) {
+      } catch (IOException | ClassNotFoundException e) {
         throw new RuntimeException(e);
       }
     }
@@ -157,9 +152,7 @@ public class ClientHandler implements ClientInterface {
         objectOutputStream.writeObject(new Packet(propertyName));
         Object obj = objectInputStream.readObject();
         return obj;
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      } catch (ClassNotFoundException e) {
+      } catch (IOException | ClassNotFoundException e) {
         throw new RuntimeException(e);
       }
     }
@@ -187,12 +180,10 @@ public class ClientHandler implements ClientInterface {
         int count = Integer.valueOf(packet.getMessage());
         System.out.println(count);
         for(int i =0;i<count;i++){
-          jsonArray.add((JSONObject) objectInputStream.readObject());
+          jsonArray.add(objectInputStream.readObject());
         }
         return jsonArray;
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      } catch (ClassNotFoundException e) {
+      } catch (IOException | ClassNotFoundException e) {
         throw new RuntimeException(e);
       }
     }

@@ -13,21 +13,22 @@ public class Client {
     ClientHandler clientHandler = new ClientHandler();
     clientHandler.createConnection();
     clientHandler.login("bayta", "123");
-//    System.out.println(clientHandler.getDocument("database1", "collection1", "129124"));
+    System.out.println(clientHandler.getDocument("films", "dockerVideos", "films.dockerVideos.0"));
+    System.out.println(clientHandler.getDocument("films", "dockerVideos", "films.dockerVideos.1"));
 //    JSONArray jsonArray = clientHandler.getCollection("videos", "dockerVideos");
 //    for (Object obj : jsonArray) {
 //      System.out.println(((JSONObject) obj).toJSONString());
 //    }
 //    Object obj = clientHandler.getProperty("database1","collection1","129124","name");
 //    System.out.println(obj.toString());
-  clientHandler.createDatabase("films");
+//  clientHandler.createDatabase("films");
 //  JSONObject schema = new JSONObject();
 //  schema.put("name","string");
 //  schema.put("url","string");
-//  clientHandler.createCollection("Videos","dockerVideos",schema);
+//  clientHandler.createCollection("films","dockerVideos",schema);
 //  JSONObject jsonObject = new JSONObject();
-//  jsonObject.put("name","dogs");
-//  jsonObject.put("url","youtube.com/dogs");
-//  clientHandler.writeDocument("Videos","dockerVideos",jsonObject);
+//  jsonObject.put("name","rabbits");
+//  jsonObject.put("url","youtube.com/rabbits");
+//  clientHandler.writeDocument("films","dockerVideos",jsonObject);
   }
 }

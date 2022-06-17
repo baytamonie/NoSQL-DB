@@ -16,17 +16,25 @@ import java.util.HashMap;
 public class GetDocumentById implements DocumentReadFunctions {
 
 
+    private final String dbName;
+    private final String collectionName;
+    private final String documentId;
+
+    public GetDocumentById(String dbName, String collectionName, String documentId) {
+        this.dbName = dbName;
+        this.collectionName = collectionName;
+        this.documentId = documentId;
+    System.out.println(dbName);
+    System.out.println(collectionName);
+    System.out.println(documentId);
+    }
+
     @Override
-    public boolean execute(ObjectInputStream inputStream, ObjectOutputStream outputStream) {
+    public boolean execute( ObjectOutputStream outputStream) {
 
         try {
-            String dbName =( (Packet) inputStream.readObject()).getMessage();
-            String collectionName = ((Packet) inputStream.readObject()).getMessage();
-            String documentId = ((Packet) inputStream.readObject()).getMessage();
             if(!DocumentUtils.checkIfCollectionExists(dbName,collectionName))
                 return false;
-            String idsPath = DocumentUtils.pathBuilder(dbName,collectionName,"ids.json");
-
             if(!DocumentUtils.checkIfCollectionExists(dbName,collectionName))
             return false;
 
@@ -44,9 +52,6 @@ public class GetDocumentById implements DocumentReadFunctions {
             return true;
 
         } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }

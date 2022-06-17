@@ -93,7 +93,7 @@ public class FileUtils {
       randomAccessFile.seek(randomAccessFile.length());
       randomAccessFile.writeBytes(jsonObject.toJSONString());
       long endOfNewObject = randomAccessFile.length();
-      if(updateIdsFile(path,key,startOfNewObject,endOfNewObject))
+      if(!updateIdsFile(path,key,startOfNewObject,endOfNewObject))
         return false;
 
       if(randomAccessFile!=null)

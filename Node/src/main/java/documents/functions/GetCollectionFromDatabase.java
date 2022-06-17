@@ -10,12 +10,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class GetCollectionFromDatabase implements DocumentReadFunctions {
+
+    private final String dbName;
+    private final String collectionName;
+
+    public GetCollectionFromDatabase(String dbName, String collectionName) {
+        this.dbName = dbName;
+        this.collectionName = collectionName;
+    }
+
     @Override
-    public boolean execute(ObjectInputStream inputStream, ObjectOutputStream outputStream) {
+    public boolean execute( ObjectOutputStream outputStream) {
 
         try {
-            String dbName = ((Packet) inputStream.readObject()).getMessage();
-            String collectionName = ((Packet) inputStream.readObject()).getMessage();
             if (!DocumentUtils.checkIfCollectionExists(dbName, collectionName))
                 return false;
             String dataPath =
@@ -27,9 +34,6 @@ public class GetCollectionFromDatabase implements DocumentReadFunctions {
             outputStream.writeObject(jsonArray);
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             return false;
         }
