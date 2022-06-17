@@ -15,7 +15,7 @@ public class DeleteDataBase implements DatabaseWriteFunction{
 
             String path = "src/main/resources/databases/" + dbName;
             if (FileUtils.checkIfFileOrDirectoryExists(path)) {
-                FileUtils.deleteDirectory(path);
+                if(FileUtils.deleteDirectory(path))
                 return true;
             }
             return false;

@@ -32,10 +32,10 @@ public class DatabaseFunctionsFactory {
         collectionName = getPacket();
         document = getJsonObject();
         return new AddDocumentToCollection(dbName,collectionName,document);
-      case "DeleteDataBase":
+      case "deleteDatabase":
         dbName = getPacket();
         return new DeleteDataBase(dbName);
-      case "DeleteCollection":
+      case "deleteCollection":
         dbName = getPacket();
         collectionName = getPacket();
         return new DeleteCollection(dbName,collectionName);

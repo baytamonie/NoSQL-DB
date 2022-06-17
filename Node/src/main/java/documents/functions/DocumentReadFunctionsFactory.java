@@ -1,6 +1,5 @@
 package documents.functions;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import documents.entities.Packet;
 import org.json.simple.JSONObject;
 
@@ -9,10 +8,10 @@ import java.io.ObjectInputStream;
 
 public class DocumentReadFunctionsFactory {
 
-    private final ObjectInputStream objectInputStream;
+    private final ObjectInputStream clientObjectInputStream;
 
-    public DocumentReadFunctionsFactory(ObjectInputStream objectInputStream) {
-        this.objectInputStream = objectInputStream;
+    public DocumentReadFunctionsFactory(ObjectInputStream clientObjectInputStream) {
+        this.clientObjectInputStream = clientObjectInputStream;
     }
 
     public DocumentReadFunctions createDocumentFunction(String function){
@@ -47,13 +46,13 @@ public class DocumentReadFunctionsFactory {
                 collectionName = getPacket();
                 return new GetCollectionFromDatabase(dbName,collectionName);
             default:
-                throw new IllegalArgumentException();
+                return null;
         }
     }
 
     public String getPacket(){
         try {
-            return ((Packet)objectInputStream.readObject()).getMessage();
+            return ((Packet) clientObjectInputStream.readObject()).getMessage();
         } catch (IOException  |ClassNotFoundException e) {
             e.printStackTrace();
             return null;
@@ -62,7 +61,7 @@ public class DocumentReadFunctionsFactory {
 
     public JSONObject getJsonObject(){
         try {
-            return ((JSONObject)objectInputStream.readObject());
+            return ((JSONObject) clientObjectInputStream.readObject());
         } catch (IOException  |ClassNotFoundException e) {
             e.printStackTrace();
             return null;

@@ -10,10 +10,10 @@ public class AddDocumentToCollection implements DatabaseWriteFunction{
     private final String collectionName;
     private final JSONObject objectToAdd;
 
-    public AddDocumentToCollection(String dbName, String collectionName, JSONObject jsonObject) {
+    public AddDocumentToCollection(String dbName, String collectionName, JSONObject document) {
         this.dbName = dbName;
         this.collectionName = collectionName;
-        this.objectToAdd = jsonObject;
+        this.objectToAdd = document;
     }
     @Override
     public boolean execute() {

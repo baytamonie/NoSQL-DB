@@ -6,17 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java">
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientConnector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/target/classes/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/AddDocumentToCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/AddDocumentToCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseFunctionsFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseFunctionsFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDataBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/films/dockerVideos/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/films/dockerVideos/ids.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/films/dockerVideos/schema.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/idsPointer" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/resources/databases/idsPointer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/dockerVideos/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/dockerVideos/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/dockerVideos/schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/videos/dockerVideos/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/videos/dockerVideos/ids.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/videos/dockerVideos/schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/AddDocumentToCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/AddDocumentToCollection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/utils/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/utils/FileUtils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,11 +55,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mbayt\OneDrive\Desktop\Final-project-Atypon\Node\src\main\resources\databases" />
@@ -150,8 +157,8 @@
       <workItem from="1655312093571" duration="38000" />
       <workItem from="1655312182231" duration="67000" />
       <workItem from="1655312412832" duration="7556000" />
-      <workItem from="1655382733380" duration="2511000" />
-      <workItem from="1655411245391" duration="2510000" />
+      <workItem from="1655382733380" duration="3795000" />
+      <workItem from="1655480483010" duration="5549000" />
     </task>
     <task id="LOCAL-00001" summary="Added Node.java">
       <created>1654188495885</created>

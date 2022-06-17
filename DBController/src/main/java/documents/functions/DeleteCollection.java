@@ -14,10 +14,9 @@ public class DeleteCollection implements DatabaseWriteFunction {
 
     @Override
     public boolean execute() {
-
             String path = "src/main/resources/databases/" + dbName + '/' + collectionName;
             if (FileUtils.checkIfFileOrDirectoryExists(path)) {
-                FileUtils.deleteDirectory(path);
+                if(FileUtils.deleteDirectory(path))
                 return true;
             }
             return false;
