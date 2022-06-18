@@ -5,5 +5,5 @@ import java.io.ObjectOutputStream;
 
 public interface DocumentReadFunctions {
 
-    boolean execute( ObjectOutputStream outputStream);
+    Object execute();
 }

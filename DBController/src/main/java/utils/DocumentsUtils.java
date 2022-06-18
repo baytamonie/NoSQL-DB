@@ -19,6 +19,7 @@ public class DocumentsUtils {
             Iterator<String> schemaKeys = schema.keySet().iterator();
             Iterator<String> jsonObjectKeys = schema.keySet().iterator();
             int numOfJsonObjectKeys = 0;
+            jsonObject.remove("_id");
             while(jsonObjectKeys.hasNext()){
                 jsonObjectKeys.next();
                 numOfJsonObjectKeys++;
@@ -27,6 +28,8 @@ public class DocumentsUtils {
             int numOfItemsInSchema =0;
             while (schemaKeys.hasNext()) {
                 String key = schemaKeys.next();
+                if(key=="_id")
+                    continue;
                 if(jsonObject.containsKey(key) && jsonObject.get(key).getClass().equals(jsonSchema.getPropertyType(key))){
                     numOfItemsInSchema++;
                     continue;

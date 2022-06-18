@@ -5,7 +5,9 @@ import java.io.ObjectOutputStream;
 
 public class GetAllDocumentsWithProperty implements DocumentReadFunctions {
     @Override
-    public boolean execute(ObjectOutputStream outputStream) {
-        return false;
+    public Object execute() {
+
+
+        return null;
     }
 }

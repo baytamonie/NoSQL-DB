@@ -30,32 +30,20 @@ public class GetDocumentById implements DocumentReadFunctions {
     }
 
     @Override
-    public boolean execute( ObjectOutputStream outputStream) {
+    public Object execute(  ) {
 
-        try {
             if(!DocumentUtils.checkIfCollectionExists(dbName,collectionName))
-                return false;
-            if(!DocumentUtils.checkIfCollectionExists(dbName,collectionName))
-            return false;
+                return null;
 
             String idsDocPath = DocumentUtils.pathBuilder(dbName,collectionName,"ids.json");
             HashMap<String, IdsObject> ids = FileUtils.loadIdsJSON(idsDocPath);
             IdsObject idsObject = ids.get(documentId);
             if(idsObject == null)
-                return false;
+                return null;
             String dataPath = DocumentUtils.pathBuilder(dbName,collectionName,"data.json");
             JSONObject jsonObject =
                     FileUtils.getObjectRandomAccessFile(dataPath, idsObject.getBegin(), idsObject.getEnd());
-            if(jsonObject==null)
-                return false;
-            outputStream.writeObject(jsonObject);
-            return true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-
+            return jsonObject;
 
     }
 }

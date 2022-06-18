@@ -18,10 +18,11 @@ public class DatabaseFunctionsFactory {
     String collectionName;
     JSONObject schema;
     JSONObject document;
+    String id;
     switch (function) {
       case "createDatabase":
          dbName = getPacket();
-        return new CreateDataBase(dbName);
+        return new CreateDatabase(dbName);
       case "createCollection":
          dbName = getPacket();
          collectionName = getPacket();
@@ -34,11 +35,22 @@ public class DatabaseFunctionsFactory {
         return new AddDocumentToCollection(dbName,collectionName,document);
       case "deleteDatabase":
         dbName = getPacket();
-        return new DeleteDataBase(dbName);
+        return new DeleteDatabase(dbName);
       case "deleteCollection":
         dbName = getPacket();
         collectionName = getPacket();
         return new DeleteCollection(dbName,collectionName);
+      case "updateDocument":
+        dbName = getPacket();
+        collectionName = getPacket();
+        id = getPacket();
+        document = getJsonObject();
+        return new UpdateDocument(dbName,collectionName,id,document);
+      case "deleteDocument":
+        dbName = getPacket();
+        collectionName = getPacket();
+        id = getPacket();
+        return  new DeleteDocument(dbName,collectionName,id);
       default:
         return null;
     }

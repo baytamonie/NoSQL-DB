@@ -2,11 +2,11 @@ package documents.functions;
 
 import utils.FileUtils;
 
-public class DeleteDataBase implements DatabaseWriteFunction{
+public class DeleteDatabase implements DatabaseWriteFunction{
 
     private final String dbName;
 
-    public DeleteDataBase(String dbName) {
+    public DeleteDatabase(String dbName) {
         this.dbName = dbName;
     }
 

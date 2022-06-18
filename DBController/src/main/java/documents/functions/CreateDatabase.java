@@ -2,11 +2,11 @@ package documents.functions;
 
 import utils.FileUtils;
 
-public class CreateDataBase implements DatabaseWriteFunction{
+public class CreateDatabase implements DatabaseWriteFunction{
 
     private final String dbName;
 
-    public CreateDataBase(String dbName) {
+    public CreateDatabase(String dbName) {
         this.dbName = dbName;
     }
     @Override

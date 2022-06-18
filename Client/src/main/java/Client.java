@@ -13,23 +13,24 @@ public class Client {
         ClientHandler clientHandler = new ClientHandler();
         clientHandler.createConnection();
         clientHandler.login("bayta", "123");
-//        System.out.println(clientHandler.getDocument("films", "dockerVideos", "films.dockerVideos.0"));
-//        System.out.println(clientHandler.getDocument("films", "dockerVideos", "films.dockerVideos.1"));
-//    JSONArray jsonArray = clientHandler.getCollection("videos", "dockerVideos");
+//        System.out.println(clientHandler.getDocument("films", "meta", "films.meta.0"));
+//        System.out.println(clientHandler.getDocument("films", "meta", "films.meta.1"));
+//    JSONArray jsonArray = clientHandler.getCollection("films", "meta");
 //    for (Object obj : jsonArray) {
 //      System.out.println(((JSONObject) obj).toJSONString());
 //    }
 //    Object obj = clientHandler.getProperty("database1","collection1","129124","name");
 //    System.out.println(obj.toString());
-//  clientHandler.createDatabase("metaTest");
-  JSONObject schema = new JSONObject();
-  schema.put("name","string");
-  schema.put("url","string");
-  clientHandler.createCollection("films","meta",schema);
-//  JSONObject jsonObject = new JSONObject();
-//  jsonObject.put("name","rabbits");
-//  jsonObject.put("age",20);
-//  clientHandler.writeDocument("metaTest","meta",jsonObject);
+//  clientHandler.createDatabase("films");
+//  JSONObject schema = new JSONObject();
+//  schema.put("name","string");
+//  schema.put("url","string");
+//  clientHandler.createCollection("films","meta",schema);
+  JSONObject jsonObject = new JSONObject();
+  jsonObject.put("name","ahha");
+  jsonObject.put("url","youtube.com/haha");
+//  clientHandler.writeDocument("films","meta",jsonObject);
 //        clientHandler.deleteCollection("films","dockerVideos");
+        clientHandler.updateDocument("films","meta","films.meta.1",jsonObject);
     }
 }

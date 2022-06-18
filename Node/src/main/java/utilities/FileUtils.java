@@ -21,14 +21,9 @@ public class FileUtils {
             JSONArray data = (JSONArray) dataObject;
             fileReader.close();
             return data;
-        } catch (FileNotFoundException e) {
+        } catch (ParseException | IOException e) {
             throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        catch (ClassCastException e){
+        } catch (ClassCastException e){
             JSONArray jsonArray = new JSONArray();
             jsonArray.add(dataObject);
             return jsonArray;
@@ -64,12 +59,8 @@ public class FileUtils {
             }
             fileReader.close();
             return list;
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+        } catch (IOException | ParseException e) {
+            return null;
         }
     }
 

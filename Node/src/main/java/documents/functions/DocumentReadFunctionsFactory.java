@@ -25,32 +25,32 @@ public class DocumentReadFunctionsFactory {
             throw new IllegalArgumentException();
         switch (function){
             case "getDocumentById":
-                dbName = getPacket();
-                collectionName = getPacket();
-                documentId = getPacket();
+                dbName = getPacketFromClient();
+                collectionName = getPacketFromClient();
+                documentId = getPacketFromClient();
                 return new GetDocumentById(dbName,collectionName,documentId);
             case "getProperty":
-                dbName = getPacket();
-                collectionName = getPacket();
-                documentId = getPacket();
-                propertyName = getPacket();
+                dbName = getPacketFromClient();
+                collectionName = getPacketFromClient();
+                documentId = getPacketFromClient();
+                propertyName = getPacketFromClient();
                 return new GetPropertyValueFromDocument(dbName,collectionName,documentId,propertyName);
             case "login":
-                userName = getPacket();
-                password = getPacket();
+                userName = getPacketFromClient();
+                password = getPacketFromClient();
                 return new Login(userName,password);
             case "getAllDocumentsWithProperty":
                 return new GetAllDocumentsWithProperty();
             case "getCollection":
-                dbName = getPacket();
-                collectionName = getPacket();
+                dbName = getPacketFromClient();
+                collectionName = getPacketFromClient();
                 return new GetCollectionFromDatabase(dbName,collectionName);
             default:
                 return null;
         }
     }
 
-    public String getPacket(){
+    public String getPacketFromClient(){
         try {
             return ((Packet) clientObjectInputStream.readObject()).getMessage();
         } catch (IOException  |ClassNotFoundException e) {

@@ -107,4 +107,43 @@ public class FileUtils {
       return false;
     }
   }
+  public static boolean deleteFromIds(String path,String id){
+    try(FileReader fileReader = new FileReader(path)){
+      JSONParser jsonParser = new JSONParser();
+      Object dataObject = jsonParser.parse(fileReader);
+      JSONArray data = (JSONArray) dataObject;
+      JSONArray newData = new JSONArray();
+      boolean isDocFound = false;
+      for(Object obj : data){
+       if(((JSONObject)obj).containsValue(id)){
+         isDocFound = true;
+        continue;
+       }
+       newData.add(obj);
+      }
+      if(isDocFound){
+      FileWriter fileWriter = new FileWriter(path);
+      fileWriter.write(String.valueOf(newData));
+      fileWriter.close();
+      }
+      else
+        return false;
+      fileReader.close();
+      return true;
+
+    } catch (IOException | ParseException e) {
+      return false;
+    }
+  }
+  public static boolean writeToRandomAccessFile(String path, long start, long end){
+    try(RandomAccessFile randomAccessFile = new RandomAccessFile(path,"rw")){
+    randomAccessFile.seek(start);
+    byte[] bytesToWrite = new byte[(int)(end-start)];
+    String s= new String(bytesToWrite);
+    randomAccessFile.writeBytes(s);
+    return true;
+    } catch (IOException e) {
+      return false;
+    }
+  }
 }

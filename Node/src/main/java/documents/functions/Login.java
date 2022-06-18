@@ -19,23 +19,15 @@ public class Login implements DocumentReadFunctions {
   }
 
   @Override
-  public boolean execute(ObjectOutputStream outputStream) {
+  public Object execute() {
 
-    try {
-      for (User user : Server.userList) {
-        if (user.getName().equals(username) && user.getPassword().equals(password)) {
-          outputStream.writeObject(new Packet("true"));
-          outputStream.writeObject(new Packet(user.getAuthority()));
-          System.out.println("successful login");
-          return true;
-        }
+    for (User user : Server.userList) {
+      if (user.getName().equals(username) && user.getPassword().equals(password)) {
+        Packet msg = new Packet("true\n" + user.getAuthority());
+        return msg;
       }
-      outputStream.writeObject(new Packet("false"));
-      System.out.println("not successful login");
-      return false;
-    } catch (IOException e) {
-      e.printStackTrace();
-      return false;
     }
-  }
+    Packet msg = new Packet("false");
+    return msg;
+    }
 }

@@ -27,11 +27,10 @@ public class GetPropertyValueFromDocument implements DocumentReadFunctions {
     }
 
     @Override
-    public boolean execute( ObjectOutputStream outputStream) {
-        try {
+    public Object execute( ) {
 
             if (!DocumentUtils.checkIfCollectionExists(dbName, collectionName))
-                return false;
+                return null;
                 String idsDocPath =
                         DocumentUtils.pathBuilder(dbName, collectionName, "ids.json");
                 HashMap<String, IdsObject> ids = FileUtils.loadIdsJSON(idsDocPath);
@@ -40,18 +39,13 @@ public class GetPropertyValueFromDocument implements DocumentReadFunctions {
                                 dbName, collectionName, "data.json");
                 IdsObject idsObject = ids.get(documentId);
                 if(idsObject==null)
-                    return false;
+                    return null;
                 JSONObject jsonObject =
                         FileUtils.getObjectRandomAccessFile(docPath, idsObject.getBegin(), idsObject.getEnd());
                 if(jsonObject==null)
-                    return false;
+                    return null;
                 Object obj = jsonObject.get(propertyName);
-                outputStream.writeObject(obj);
-                return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
+                return obj;
 
     }
 }

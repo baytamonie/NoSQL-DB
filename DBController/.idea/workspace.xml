@@ -6,43 +6,45 @@
   <component name="ChangeListManager">
     <list default="true" id="ec0dd464-c652-4850-84fc-f879cbb3a698" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientConnector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/target/classes/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/documents/functions/AddDocumentToCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documents/functions/AddDocumentToCollection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/documents/functions/CreateDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documents/functions/CreateDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/documents/functions/DatabaseFunctionsFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documents/functions/DatabaseFunctionsFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/documents/functions/DeleteCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documents/functions/DeleteCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/documents/functions/DeleteDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documents/functions/DeleteDataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/handlers/NodeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/handlers/NodeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/databases/films/dockerVideos/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/databases/films/dockerVideos/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/databases/films/dockerVideos/schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/documents/functions/DeleteDataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/documents/functions/DeleteDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/DocumentsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/DocumentsUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/databases/films/meta/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/databases/films/meta/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/databases/films/meta/ids.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/databases/films/meta/ids.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/databases/idsPointer" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/databases/idsPointer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/databases/videos/dockerVideos/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/databases/videos/dockerVideos/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/databases/videos/dockerVideos/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/documents/functions/AddDocumentToCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/documents/functions/AddDocumentToCollection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/handlers/NodeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/handlers/NodeHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/databases/films/dockerVideos/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/databases/films/dockerVideos/ids.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/databases/films/dockerVideos/schema.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Node/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/AddDocumentToCollection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/CreateCollection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/CreateDatabase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/DocumentReadFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/DocumentReadFunctions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/DocumentReadFunctionsFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/DocumentReadFunctionsFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/DocumentWriteFunctions.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/DocumentWriteFunctionsFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetAllDocumentsWithProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetAllDocumentsWithProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetCollectionFromDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetCollectionFromDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetDocumentById.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetDocumentById.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetPropertyValueFromDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/GetPropertyValueFromDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/documents/functions/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Node/src/main/java/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/databases/videos/dockerVideos/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/databases/videos/dockerVideos/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/databases/videos/dockerVideos/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/AddDocumentToCollection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/CreateCollection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/CreateDatabase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/java/utilities/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/java/utilities/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/resources/databases/films/dockerVideos/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/resources/databases/films/dockerVideos/ids.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/resources/databases/films/dockerVideos/schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/src/main/resources/databases/idsPointer" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/src/main/resources/databases/idsPointer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/databases/films/dockerVideos/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/databases/films/dockerVideos/ids.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/databases/films/dockerVideos/schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/DocumentReadFunctions.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/documents/functions/DocumentReadFunctions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/DocumentReadFunctionsFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/documents/functions/DocumentReadFunctionsFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/DocumentWriteFunctions.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/DocumentWriteFunctionsFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetAllDocumentsWithProperty.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetAllDocumentsWithProperty.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetCollectionFromDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetCollectionFromDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetDocumentById.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetDocumentById.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetPropertyValueFromDocument.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/documents/functions/GetPropertyValueFromDocument.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Node/target/classes/documents/functions/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/documents/functions/Login.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Node/target/classes/server/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Node/target/classes/server/ClientHandler.class" afterDir="false" />
     </list>
@@ -76,9 +78,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="documents" />
@@ -163,6 +167,7 @@
       <workItem from="1655382732863" duration="4040000" />
       <workItem from="1655479296113" duration="774000" />
       <workItem from="1655480484693" duration="3482000" />
+      <workItem from="1655493453188" duration="8386000" />
     </task>
     <servers />
   </component>

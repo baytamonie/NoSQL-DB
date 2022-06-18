@@ -17,7 +17,7 @@ public class ClientHandler implements Runnable {
   private final Socket controller;
   private ObjectInputStream objectInputStreamClient;
   private ObjectOutputStream objectOutputStreamController;
-  private  DocumentReadFunctionsFactory documentReadFunctionsFactory;
+  private DocumentReadFunctionsFactory documentReadFunctionsFactory;
 
   private boolean isLoggedIn;
   private User user;
@@ -55,7 +55,9 @@ public class ClientHandler implements Runnable {
         if (command.equals("createDatabase")
             || command.equals("createCollection")
             || command.equals("addDocument")
-      ||command.equals("deleteDatabase")||command.equals("deleteCollection")) {
+            || command.equals("deleteDatabase")
+            || command.equals("deleteCollection")
+            || command.equals("deleteDocument")||command.equals("updateDocument")) {
           forwardFunctionToController(command);
           String response = getResponseFromController();
           sendMessageToClient(new Packet(response));
@@ -63,15 +65,10 @@ public class ClientHandler implements Runnable {
         }
         DocumentReadFunctions functionToExecute =
             documentReadFunctionsFactory.createDocumentFunction(command);
-        if(functionToExecute!=null){
-        boolean didFunctionExecute = functionToExecute.execute(objectOutputStreamClient);
-        if (!didFunctionExecute) {
-          objectOutputStreamClient.writeObject(null);
+        if (functionToExecute != null) {
+          Object resultFromRead = functionToExecute.execute();
+          objectOutputStreamClient.writeObject(resultFromRead);
         }
-        }
-        else
-          objectOutputStreamClient.writeObject(null);
-
 
       } catch (IOException e) {
         try {
@@ -96,13 +93,14 @@ public class ClientHandler implements Runnable {
     }
   }
 
-  private void forwardFunctionToController(String command){
+  private void forwardFunctionToController(String command) {
     sendMessageToController(new Packet(command));
     String dbName;
     String collectionName;
+    String docId;
     JSONObject object;
     JSONObject schema;
-    switch (command){
+    switch (command) {
       case "createDatabase":
         dbName = getMessageFromClient();
         sendMessageToController(new Packet(dbName));
@@ -132,24 +130,44 @@ public class ClientHandler implements Runnable {
         collectionName = getMessageFromClient();
         sendMessageToController(new Packet(dbName));
         sendMessageToController(new Packet(collectionName));
+        return;
+      case "deleteDocument":
+        dbName = getMessageFromClient();
+        collectionName = getMessageFromClient();
+        docId = getMessageFromClient();
+        sendMessageToController(new Packet(dbName));
+        sendMessageToController(new Packet(collectionName));
+        sendMessageToController(new Packet(docId));
+      case "updateDocument":
+        dbName = getMessageFromClient();
+        collectionName = getMessageFromClient();
+        docId = getMessageFromClient();
+        object = getJsonFromClient();
+        sendMessageToController(new Packet(dbName));
+        sendMessageToController(new Packet(collectionName));
+        sendMessageToController(new Packet(docId));
+        sendObjectToController(object);
     }
   }
-  private void sendMessageToClient(Packet packet){
+
+  private void sendMessageToClient(Packet packet) {
     try {
       objectOutputStreamClient.writeObject(packet);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
-  private String getMessageFromClient(){
+
+  private String getMessageFromClient() {
     try {
-      return ((Packet)objectInputStreamClient.readObject()).getMessage();
+      return ((Packet) objectInputStreamClient.readObject()).getMessage();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
       return null;
     }
   }
-  private JSONObject getJsonFromClient(){
+
+  private JSONObject getJsonFromClient() {
     try {
       return (JSONObject) objectInputStreamClient.readObject();
     } catch (IOException | ClassNotFoundException e) {
@@ -157,27 +175,29 @@ public class ClientHandler implements Runnable {
       return null;
     }
   }
-  private void sendMessageToController(Packet packet){
+
+  private void sendMessageToController(Packet packet) {
     try {
       objectOutputStreamController.writeObject(packet);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
-  private void sendObjectToController(Object object){
+
+  private void sendObjectToController(Object object) {
     try {
       objectOutputStreamController.writeObject(object);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
-  private String getResponseFromController(){
+
+  private String getResponseFromController() {
     try {
-      return ((Packet)objectInputStreamController.readObject()).getMessage();
+      return ((Packet) objectInputStreamController.readObject()).getMessage();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
       return null;
     }
   }
-
 }

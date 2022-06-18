@@ -19,7 +19,7 @@ public interface ClientInterface {
     void deleteDatabase(String databaseName);
     void deleteCollection(String databaseName, String collectionName);
     void writeDocument(String databaseName,String collectionName,JSONObject document);
-    void updateDocument(String databaseName,String collectionName, String documentId,String propertyName,JSONObject newValue);
+    void updateDocument(String databaseName,String collectionName, String documentId,JSONObject newValue);
     void deleteDocument(String databaseName,String collectionName, String documentId);
 
     void createIndex(String databaseName, String collectionName, String indexName);
