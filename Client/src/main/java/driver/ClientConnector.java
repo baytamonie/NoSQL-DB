@@ -8,19 +8,16 @@ import java.net.Socket;
 public class ClientConnector {
     private DataInputStream fromNode;
     private ObjectOutputStream toNode;
-    private Socket socket;
-    private int port;
 
     public Socket initConnection() {
         try {
-            this.port = getNodePort();
+            int port = getNodePort();
             if (port == -1) {
                 System.out.println("Error connecting client to port");
                 ClientHandler.connectionEstablished = false;
                 return null;
             }
-            this.socket = new Socket("localhost", port);
-            return socket;
+            return new Socket("localhost", port);
         } catch (Exception e) {
             ClientHandler.connectionEstablished = false;
             System.out.println("Error initializing client");

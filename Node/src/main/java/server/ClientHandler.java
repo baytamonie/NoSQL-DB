@@ -57,7 +57,9 @@ public class ClientHandler implements Runnable {
             || command.equals("addDocument")
             || command.equals("deleteDatabase")
             || command.equals("deleteCollection")
-            || command.equals("deleteDocument")||command.equals("updateDocument")) {
+            || command.equals("deleteDocument")
+            || command.equals("updateDocument")
+            || command.equals("createIndex")) {
           forwardFunctionToController(command);
           String response = getResponseFromController();
           sendMessageToClient(new Packet(response));
@@ -147,6 +149,13 @@ public class ClientHandler implements Runnable {
         sendMessageToController(new Packet(collectionName));
         sendMessageToController(new Packet(docId));
         sendObjectToController(object);
+      case "createIndex":
+        dbName = getMessageFromClient();
+        collectionName = getMessageFromClient();
+        String propertyName = getMessageFromClient();
+        sendMessageToController(new Packet(dbName));
+        sendMessageToController(new Packet(collectionName));
+        sendMessageToController(new Packet(propertyName));
     }
   }
 

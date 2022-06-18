@@ -157,32 +157,18 @@ public class ClientHandler implements ClientInterface {
   @Override
   public JSONArray getProperties(
       String databaseName, String collectionName, String property, String value) {
-    if (chainOfResponsibility()
-        && userAuthority.contains("r")
-        && databaseName != null
-        && collectionName != null
-        && property != null
-        && value != null) {
-      String msg = "getAllDocumentsWithProperty";
-      try {
-        objectOutputStream.writeObject(new Packet(msg));
-        objectOutputStream.writeObject(new Packet(databaseName));
-        objectOutputStream.writeObject(new Packet(collectionName));
-        objectOutputStream.writeObject(new Packet(property));
-        objectOutputStream.writeObject(new Packet(value));
-        JSONArray jsonArray = new JSONArray();
-        Packet packet = (Packet) objectInputStream.readObject();
-        int count = Integer.valueOf(packet.getMessage());
-        System.out.println(count);
-        for (int i = 0; i < count; i++) {
-          jsonArray.add(objectInputStream.readObject());
-        }
-        return jsonArray;
-      } catch (IOException | ClassNotFoundException e) {
-        throw new RuntimeException(e);
-      }
-    }
-    return null;
+    if (databaseName == null | collectionName == null || property == null || value == null)
+      throw new IllegalArgumentException();
+    sendMessageToNode(new Packet("getAllDocumentsWithProperty"));
+    sendMessageToNode(new Packet(databaseName));
+    sendMessageToNode(new Packet(collectionName));
+    sendMessageToNode(new Packet(property));
+    sendMessageToNode(new Packet(value));
+    JSONArray jsonArray = (JSONArray) getObjectFromNode();
+    if (jsonArray == null)
+      System.out.println("No values were found in the collection with the property value " + value);
+    else System.out.println("Collection received");
+    return jsonArray;
   }
 
   @Override
@@ -255,14 +241,9 @@ public class ClientHandler implements ClientInterface {
 
   @Override
   public void updateDocument(
-      String databaseName,
-      String collectionName,
-      String documentId,
-      JSONObject newValue) {
-    if (databaseName == null
-        || collectionName == null
-        || documentId == null
-        || newValue == null) throw new IllegalArgumentException();
+      String databaseName, String collectionName, String documentId, JSONObject newValue) {
+    if (databaseName == null || collectionName == null || documentId == null || newValue == null)
+      throw new IllegalArgumentException();
     sendMessageToNode(new Packet("updateDocument"));
     sendMessageToNode(new Packet(databaseName));
     sendMessageToNode(new Packet(collectionName));
@@ -272,7 +253,6 @@ public class ClientHandler implements ClientInterface {
     if (confirmation.equals("true"))
       System.out.println("Updating document " + documentId + " is successful");
     else System.out.println("Updating document " + documentId + " has failed");
-
   }
 
   @Override
@@ -293,7 +273,14 @@ public class ClientHandler implements ClientInterface {
   public void createIndex(String databaseName, String collectionName, String indexName) {
     if (databaseName == null || collectionName == null || indexName == null)
       throw new IllegalArgumentException();
-  }
+    sendMessageToNode(new Packet("createIndex"));
+    sendMessageToNode(new Packet(databaseName));
+    sendMessageToNode(new Packet(collectionName));
+    sendMessageToNode(new Packet(indexName));
+    String confirmation = getMessageFromNode();
+    if (confirmation.equals("true"))
+      System.out.println("creating index on " + indexName + " is successful");
+    else System.out.println("creating index on " + indexName + " has failed");  }
 
   private void sendMessageToNode(Packet packet) {
     if (packet == null) throw new IllegalArgumentException();
@@ -318,6 +305,15 @@ public class ClientHandler implements ClientInterface {
     try {
       Packet packet = (Packet) objectInputStream.readObject();
       return packet.getMessage();
+    } catch (IOException | ClassNotFoundException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
+  }
+
+  private Object getObjectFromNode() {
+    try {
+      return objectInputStream.readObject();
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
       throw new RuntimeException();

@@ -22,11 +22,9 @@ public class AddDocumentToCollection implements DatabaseWriteFunction{
             if(!FileUtils.checkIfFileOrDirectoryExists(path)){
                 return false;
             }
+
             String key = DocumentsUtils.generateKey(dbName,collectionName);
-            if(objectToAdd.containsKey("_id"))
-                objectToAdd.replace("_id",key);
-            else
-                objectToAdd.put("_id",key);
+            objectToAdd.put("_id",key);
             if(!DocumentsUtils.checkIfSchemaMatches(path+"/schema.json",objectToAdd))
                 return false;
 

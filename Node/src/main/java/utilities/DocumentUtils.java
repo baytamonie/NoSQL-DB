@@ -1,6 +1,10 @@
 package utilities;
 
-import java.io.File;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.*;
 
 public  class DocumentUtils {
 
@@ -32,6 +36,18 @@ public  class DocumentUtils {
                 +collectionName
                 +'/'
                 +fileName;
+    }
+
+    public static boolean checkIfPropertyInSchema(String propertyName, String path){
+        try(FileReader fileReader = new FileReader(path)){
+            JSONParser jsonParser = new JSONParser();
+            JSONObject schema = (JSONObject) (jsonParser.parse(fileReader));
+            fileReader.close();
+            return schema != null && schema.containsKey(propertyName);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

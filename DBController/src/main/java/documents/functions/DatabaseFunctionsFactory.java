@@ -51,6 +51,11 @@ public class DatabaseFunctionsFactory {
         collectionName = getPacket();
         id = getPacket();
         return  new DeleteDocument(dbName,collectionName,id);
+      case "createIndex":
+        dbName = getPacket();
+        collectionName = getPacket();
+        String propertyName = getPacket();
+        return new CreateIndex(dbName,collectionName,propertyName);
       default:
         return null;
     }

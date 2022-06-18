@@ -3,13 +3,24 @@ package utils;
 import documents.entities.JSONSchema;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.util.Iterator;
 import java.util.Scanner;
 
 public class DocumentsUtils {
-
+    public static boolean checkIfPropertyInSchema(String propertyName, String path){
+        try(FileReader fileReader = new FileReader(path)){
+            JSONParser jsonParser = new JSONParser();
+            JSONObject schema = (JSONObject) (jsonParser.parse(fileReader));
+            fileReader.close();
+            return schema != null && schema.containsKey(propertyName);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public static boolean checkIfSchemaMatches(String path,JSONObject jsonObject){
         JSONParser jsonParser = new JSONParser();
         FileReader fileReader = null;
@@ -32,7 +43,6 @@ public class DocumentsUtils {
                     continue;
                 if(jsonObject.containsKey(key) && jsonObject.get(key).getClass().equals(jsonSchema.getPropertyType(key))){
                     numOfItemsInSchema++;
-                    continue;
                 }
                 else
                     return false;
@@ -58,10 +68,8 @@ public class DocumentsUtils {
             String line = scanner.nextLine();
             writeNewKey(line);
             key = key + line;
-            if(fileInputStream!=null)
-                fileInputStream.close();
-            if(scanner!=null)
-                scanner.close();
+            fileInputStream.close();
+            scanner.close();
             return key;
 
         } catch (Exception e) {
@@ -81,8 +89,7 @@ public class DocumentsUtils {
             FileWriter fileWriter = new FileWriter("src/main/resources/databases/idsPointer");
             fileWriter.write(String.valueOf(keyValue));
             System.out.println("new key: "+keyValue);
-            if(fileWriter!=null)
-                fileWriter.close();
+            fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

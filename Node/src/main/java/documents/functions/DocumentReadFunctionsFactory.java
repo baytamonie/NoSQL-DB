@@ -19,6 +19,7 @@ public class DocumentReadFunctionsFactory {
         String collectionName;
         String documentId;
         String propertyName;
+        String propertyValue;
         String userName;
         String password;
         if( function == null || function.isEmpty())
@@ -40,7 +41,11 @@ public class DocumentReadFunctionsFactory {
                 password = getPacketFromClient();
                 return new Login(userName,password);
             case "getAllDocumentsWithProperty":
-                return new GetAllDocumentsWithProperty();
+                dbName = getPacketFromClient();
+                collectionName = getPacketFromClient();
+                propertyName = getPacketFromClient();
+                propertyValue = getPacketFromClient();
+                return new GetAllDocumentsWithProperty(dbName,collectionName,propertyName,propertyValue);
             case "getCollection":
                 dbName = getPacketFromClient();
                 collectionName = getPacketFromClient();
