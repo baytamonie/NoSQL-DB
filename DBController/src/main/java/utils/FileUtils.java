@@ -94,6 +94,8 @@ public class FileUtils {
     try (RandomAccessFile randomAccessFile = new RandomAccessFile(dataPath, "rw")) {
       long startOfNewObject = randomAccessFile.length();
       randomAccessFile.seek(randomAccessFile.length());
+      System.out.println(jsonObject.toJSONString());
+      System.out.println(jsonObject.toString());
       randomAccessFile.writeBytes(jsonObject.toJSONString());
       long endOfNewObject = randomAccessFile.length();
       if(!updateIdsFile(path,key,startOfNewObject,endOfNewObject))

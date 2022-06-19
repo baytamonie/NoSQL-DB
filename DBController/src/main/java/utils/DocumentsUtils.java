@@ -39,7 +39,7 @@ public class DocumentsUtils {
             int numOfItemsInSchema =0;
             while (schemaKeys.hasNext()) {
                 String key = schemaKeys.next();
-                if(key=="_id")
+                if(key.equals("_id"))
                     continue;
                 if(jsonObject.containsKey(key) && jsonObject.get(key).getClass().equals(jsonSchema.getPropertyType(key))){
                     numOfItemsInSchema++;

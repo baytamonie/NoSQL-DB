@@ -13,7 +13,7 @@ public class Client {
     ClientHandler clientHandler = new ClientHandler();
     clientHandler.createConnection();
     clientHandler.login("bayta", "123");
-    clientHandler.createIndex("createIndexTest","test1","name");
+//    clientHandler.createIndex("createIndexTest","test1","name");
     //        System.out.println(clientHandler.getDocument("films", "meta", "films.meta.0"));
     //        System.out.println(clientHandler.getDocument("films", "meta", "films.meta.1"));
     //    JSONArray jsonArray = clientHandler.getCollection("films", "meta");
@@ -31,9 +31,9 @@ public class Client {
     //  schema.put("name","string");
     //  schema.put("age","integer");
     //  clientHandler.createCollection("createIndexTest","test2",schema);
-//    JSONObject jsonObject = new JSONObject();
-//    jsonObject.put("name", "ahmad");
-//    jsonObject.put("age", 10);
+    JSONObject jsonObject = new JSONObject();
+    jsonObject.put("name", "youtube.com/ahmad");
+    jsonObject.put("age", 10);
 //    JSONObject jsonObject2 = new JSONObject();
 //    jsonObject2.put("name", "omar");
 //    jsonObject2.put("age", 15);
@@ -49,7 +49,7 @@ public class Client {
 //    JSONObject jsonObject6 = new JSONObject();
 //    jsonObject6.put("name", "tala");
 //    jsonObject6.put("age", 20);
-//    clientHandler.writeDocument("createIndexTest", "test1", jsonObject);
+    clientHandler.writeDocument("createIndexTest", "test1", jsonObject);
 //    clientHandler.writeDocument("createIndexTest", "test1", jsonObject2);
 //    clientHandler.writeDocument("createIndexTest", "test1", jsonObject3);
 //    clientHandler.writeDocument("createIndexTest", "test1", jsonObject4);
