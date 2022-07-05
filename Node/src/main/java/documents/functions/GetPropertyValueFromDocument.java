@@ -1,51 +1,60 @@
 package documents.functions;
 
+import cache.LRUCache;
 import documents.IdsObject;
-import documents.entities.Packet;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import org.json.simple.JSONObject;
 import utilities.DocumentUtils;
 import utilities.FileUtils;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import javax.print.Doc;
 import java.util.HashMap;
 
 public class GetPropertyValueFromDocument implements DocumentReadFunctions {
 
-    private final String dbName;
-    private final String collectionName;
-    private final String documentId;
-    private final String propertyName;
+  private final String dbName;
+  private final String collectionName;
+  private final String documentId;
+  private final String propertyName;
 
+  public GetPropertyValueFromDocument(
+      String dbName, String collectionName, String documentId, String propertyName) {
+    this.dbName = dbName;
+    this.collectionName = collectionName;
+    this.documentId = documentId;
+    this.propertyName = propertyName;
+  }
 
-    public GetPropertyValueFromDocument(String dbName, String collectionName, String documentId, String propertyName) {
-        this.dbName = dbName;
-        this.collectionName = collectionName;
-        this.documentId = documentId;
-        this.propertyName = propertyName;
+  @Override
+  public Object execute() {
+    if(lruCache.get(documentId)!=null)
+    {
+      if(!documentsUtils.checkIfPropertyInSchema(propertyName,documentsUtils.pathBuilder(dbName,collectionName,"schema.json")))
+        return null;
+      return lruCache.get(documentId).get(propertyName);
     }
 
-    @Override
-    public Object execute( ) {
-
-            if (!DocumentUtils.checkIfCollectionExists(dbName, collectionName))
-                return null;
-                String idsDocPath =
-                        DocumentUtils.pathBuilder(dbName, collectionName, "ids.json");
-                HashMap<String, IdsObject> ids = FileUtils.loadIdsJSON(idsDocPath);
-                String docPath =
-                        DocumentUtils.pathBuilder(
-                                dbName, collectionName, "data.json");
-                IdsObject idsObject = ids.get(documentId);
-                if(idsObject==null)
-                    return null;
-                JSONObject jsonObject =
-                        FileUtils.getObjectRandomAccessFile(docPath, idsObject.getBegin(), idsObject.getEnd());
-                if(jsonObject==null)
-                    return null;
-                Object obj = jsonObject.get(propertyName);
-                return obj;
-
+    if (!documentsUtils.checkIfCollectionExists(dbName, collectionName)) return null;
+    if(!documentsUtils.checkIfPropertyInSchema(propertyName,documentsUtils.pathBuilder(dbName,collectionName,"schema.json")))
+      return null;
+    String idsDocPath = documentsUtils.pathBuilder(dbName, collectionName, "ids.json");
+    HashMap<String, IdsObject> ids = fileUtils.loadIdsJSON(idsDocPath);
+    String docPath = documentsUtils.pathBuilder(dbName, collectionName, "data.json");
+    IdsObject idsObject;
+    try{
+       idsObject = ids.get(documentId);
+    }catch (NullPointerException e){
+      e.printStackTrace();
+      return null;
     }
+    JSONObject jsonObject =
+            fileUtils.getObjectRandomAccessFile(docPath, idsObject.getBegin(), idsObject.getEnd());
+    lruCache.put(documentId,jsonObject);
+    if (jsonObject == null) return null;
+
+    return jsonObject.get(propertyName);
+  }
+
+
 }

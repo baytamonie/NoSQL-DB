@@ -1,35 +1,34 @@
 package documents.functions;
 
 import org.json.simple.JSONObject;
-import utils.DocumentsUtils;
-import utils.FileUtils;
 
-public class AddDocumentToCollection implements DatabaseWriteFunction{
 
-    private final String dbName;
-    private final String collectionName;
-    private final JSONObject objectToAdd;
+public class AddDocumentToCollection implements DatabaseWriteFunction {
 
-    public AddDocumentToCollection(String dbName, String collectionName, JSONObject document) {
-        this.dbName = dbName;
-        this.collectionName = collectionName;
-        this.objectToAdd = document;
+  private final String dbName;
+  private final String collectionName;
+  private final JSONObject objectToAdd;
+  public AddDocumentToCollection(String dbName, String collectionName, JSONObject document) {
+    this.dbName = dbName;
+    this.collectionName = collectionName;
+    this.objectToAdd = document;
+  }
+
+  @Override
+  public synchronized boolean execute() {
+
+    String path = "src/main/resources/databases/" + dbName + '/' + collectionName;
+    if (!fileUtils.checkIfFileOrDirectoryExists(path)) {
+      return false;
     }
-    @Override
-    public boolean execute() {
 
-            String path = "src/main/resources/databases/" + dbName +'/' +collectionName;
-            if(!FileUtils.checkIfFileOrDirectoryExists(path)){
-                return false;
-            }
+    String key = documentsUtils.generateKey(dbName, collectionName);
 
-            String key = DocumentsUtils.generateKey(dbName,collectionName);
-            objectToAdd.put("_id",key);
-            if(!DocumentsUtils.checkIfSchemaMatches(path+"/schema.json",objectToAdd))
-                return false;
+    if (!documentsUtils.checkIfSchemaMatches(path + "/schema.json", objectToAdd)) return false;
+    objectToAdd.put("_id", key);
+    indexingUtils.addObjectToIndexedFiles(objectToAdd,dbName,collectionName);
+    return fileUtils.writeJsonToEndOfFile(objectToAdd, path, key);
+  }
 
-            return FileUtils.writeJsonToEndOfFile(objectToAdd, path ,key);
-
-        }
 
 }

@@ -25,15 +25,15 @@ public class GetCollectionFromDatabase implements DocumentReadFunctions {
   @Override
   public Object execute() {
 
-    if (!DocumentUtils.checkIfCollectionExists(dbName, collectionName)) return null;
-    String idsDocPath = DocumentUtils.pathBuilder(dbName, collectionName, "ids.json");
+    if (!documentsUtils.checkIfCollectionExists(dbName, collectionName)) return null;
+    String idsDocPath = documentsUtils.pathBuilder(dbName, collectionName, "ids.json");
     JSONArray jsonArray = new JSONArray();
-    HashMap<String, IdsObject> ids = FileUtils.loadIdsJSON(idsDocPath);
+    HashMap<String, IdsObject> ids = fileUtils.loadIdsJSON(idsDocPath);
     if (ids == null) return null;
-    String dataPath = DocumentUtils.pathBuilder(dbName, collectionName, "data.json");
+    String dataPath = documentsUtils.pathBuilder(dbName, collectionName, "data.json");
     for (IdsObject idsObject : ids.values()) {
       JSONObject jsonObject =
-          FileUtils.getObjectRandomAccessFile(dataPath, idsObject.getBegin(), idsObject.getEnd());
+              fileUtils.getObjectRandomAccessFile(dataPath, idsObject.getBegin(), idsObject.getEnd());
       if (jsonObject != null) jsonArray.add(jsonObject);
     }
 

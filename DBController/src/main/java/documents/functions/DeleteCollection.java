@@ -1,11 +1,10 @@
 package documents.functions;
 
-import utils.FileUtils;
-
 public class DeleteCollection implements DatabaseWriteFunction {
 
     private final String dbName;
     private final String collectionName;
+
 
     public DeleteCollection(String dbName, String collectionName) {
         this.dbName = dbName;
@@ -13,10 +12,10 @@ public class DeleteCollection implements DatabaseWriteFunction {
     }
 
     @Override
-    public boolean execute() {
+    public  synchronized boolean execute() {
             String path = "src/main/resources/databases/" + dbName + '/' + collectionName;
-            if (FileUtils.checkIfFileOrDirectoryExists(path)) {
-                if(FileUtils.deleteDirectory(path))
+            if (fileUtils.checkIfFileOrDirectoryExists(path)) {
+                if(fileUtils.deleteDirectory(path))
                 return true;
             }
             return false;

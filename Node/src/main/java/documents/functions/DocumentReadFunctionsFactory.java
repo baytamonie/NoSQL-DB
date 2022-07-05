@@ -1,7 +1,6 @@
 package documents.functions;
 
 import documents.entities.Packet;
-import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -64,13 +63,5 @@ public class DocumentReadFunctionsFactory {
         }
     }
 
-    public JSONObject getJsonObject(){
-        try {
-            return ((JSONObject) clientObjectInputStream.readObject());
-        } catch (IOException  |ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
 }

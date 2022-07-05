@@ -21,10 +21,6 @@ public class IdsObject {
         return end;
     }
 
-    public String getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
         return "IdsDocument{" +

@@ -23,11 +23,9 @@ public class Login implements DocumentReadFunctions {
 
     for (User user : Server.userList) {
       if (user.getName().equals(username) && user.getPassword().equals(password)) {
-        Packet msg = new Packet("true\n" + user.getAuthority());
-        return msg;
+        return new Packet("true\n" + user.getAuthority());
       }
     }
-    Packet msg = new Packet("false");
-    return msg;
+    return new Packet("false");
     }
 }

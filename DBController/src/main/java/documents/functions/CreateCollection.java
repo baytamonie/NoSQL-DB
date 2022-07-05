@@ -1,7 +1,6 @@
 package documents.functions;
 
 import org.json.simple.JSONObject;
-import utils.FileUtils;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -19,12 +18,12 @@ public class CreateCollection implements DatabaseWriteFunction {
   }
 
   @Override
-  public boolean execute() {
+  public synchronized boolean execute() {
 
       String path = "src/main/resources/databases/" + dbName;
-      if (FileUtils.checkIfFileOrDirectoryExists(path)) {
+      if (fileUtils.checkIfFileOrDirectoryExists(path)) {
         path = path + '/' + collectionName;
-        if(!FileUtils.checkIfFileOrDirectoryExists(path))
+        if(!fileUtils.checkIfFileOrDirectoryExists(path))
           return createCollectionFiles(path, schema);
         return true;
       }
@@ -32,11 +31,14 @@ public class CreateCollection implements DatabaseWriteFunction {
 
   }
 
-  private boolean createCollectionFiles(String path,JSONObject schema){
-    FileUtils.makeDirectory(path);
-    FileUtils.createFile(path+'/'+"data.json");
-    FileUtils.createFile(path+'/'+"ids.json");
-    FileUtils.createFile(path+'/'+"schema.json");
+  private  boolean createCollectionFiles(String path,JSONObject schema){
+    fileUtils.makeDirectory(path);
+    fileUtils.createFile(path+'/'+"data.json");
+    fileUtils.createFile(path+'/'+"ids.json");
+    fileUtils.createFile(path+'/'+"schema.json");
+    fileUtils.createFile(path+'/'+"index.txt");
+    fileUtils.writeToFile(path+"/index.txt",0);
+
     try (RandomAccessFile randomAccessFile = new RandomAccessFile(path+'/'+"schema.json","rw")){
       randomAccessFile.writeBytes(schema.toJSONString());
       return true;

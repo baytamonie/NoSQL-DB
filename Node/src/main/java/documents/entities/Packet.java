@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Packet implements Serializable {
 
     private final String message;
-    private static final long serialVersionUID = 1;
+    private static final long serialVersionUID = 3567653491060394677L;
 
     public String getMessage() {
         return message;

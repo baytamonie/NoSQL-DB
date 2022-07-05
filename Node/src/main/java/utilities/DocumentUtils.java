@@ -1,23 +1,31 @@
 package utilities;
 
+import documents.entities.JSONSchema;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public  class DocumentUtils {
-
-    public static boolean checkIfDbExists(String dbName){
-        if(dbName == null)
-            return false;
-        String path = "src/main/resources/databases/";
-        path += dbName;
-        File tempFile = new File(path);
-        boolean exists = tempFile.exists();
-        return exists;
+    private static volatile DocumentUtils documentsUtils;
+    public static DocumentUtils getInstance() {
+        DocumentUtils ref = documentsUtils;
+        if (ref == null) {
+            synchronized (DocumentUtils.class) {
+                ref = documentsUtils;
+                if (ref == null) documentsUtils = ref = new DocumentUtils();
+            }
+        }
+        return ref;
     }
-    public static boolean checkIfCollectionExists(String dbName, String collectionName){
+
+    private DocumentUtils(){
+
+    }
+    public  boolean checkIfCollectionExists(String dbName, String collectionName){
         if(dbName == null || collectionName == null)
             return false;
         String path = "src/main/resources/databases/";
@@ -28,7 +36,7 @@ public  class DocumentUtils {
         boolean exists = tempFile.exists();
         return exists;
     }
-    public static String pathBuilder(String dbName, String collectionName, String fileName){
+    public  String pathBuilder(String dbName, String collectionName, String fileName){
 
         return "src/main/resources/databases/"
                 +dbName
@@ -38,7 +46,7 @@ public  class DocumentUtils {
                 +fileName;
     }
 
-    public static boolean checkIfPropertyInSchema(String propertyName, String path){
+    public  boolean checkIfPropertyInSchema(String propertyName, String path){
         try(FileReader fileReader = new FileReader(path)){
             JSONParser jsonParser = new JSONParser();
             JSONObject schema = (JSONObject) (jsonParser.parse(fileReader));

@@ -4,8 +4,9 @@ import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class LRUCache {
+public class LRUCache implements Cache{
 
     class DoublyListNode{
         String key;
@@ -14,41 +15,65 @@ public class LRUCache {
         DoublyListNode next;
     }
 
-    private final  Map<String,DoublyListNode> cache;
-    private final int capacity;
+    private  final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private final Map<String,DoublyListNode> cache;
+    private final int capacity = 5;
     private DoublyListNode head,tail;
 
+    @Override
     public JSONObject get(String key){
-        DoublyListNode node = cache.get(key);
-        if(node == null)
+        lock.readLock().lock();
+        try{
+            DoublyListNode node = cache.get(key);
+            if(node == null)
+                return null;
+            moveToHead(node);
+            return node.value;
+        }catch (Exception e){
             return null;
-        moveToHead(node);
-        return node.value;
+        }finally{
+            lock.readLock().unlock();
+        }
+
     }
 
+    @Override
     public void put(String key, JSONObject value){
+        if(key == null || value == null)
+            return;
         DoublyListNode node = cache.get(key);
-        if(node == null){
-            DoublyListNode newNode = new DoublyListNode();
-            newNode.key = key;
-            newNode.value = value;
-            cache.put(key,newNode);
-            addNodeToHead(newNode);
-            if(cache.size()>capacity){
-                DoublyListNode tail = removeTailNode();
-                cache.remove(tail.key);
+        lock.writeLock().lock();
+        try{
+            if(node == null){
+                DoublyListNode newNode = new DoublyListNode();
+                newNode.key = key;
+                newNode.value = value;
+                cache.put(key,newNode);
+                addNodeToHead(newNode);
+                if(cache.size()>capacity){
+                    DoublyListNode tail = removeTailNode();
+                    cache.remove(tail.key);
+                }
+            }
+            else{
+                node.value = value;
+                moveToHead(node);
             }
         }
-        else{
-            node.value = value;
-            moveToHead(node);
+        catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            lock.writeLock().unlock();
         }
+
     }
 
-
-    public LRUCache (int capacity){
+    public static LRUCache getInstance(){
+        return lruCache;
+    }
+    private  static final LRUCache lruCache = new LRUCache();
+    private LRUCache (){
         cache = new HashMap<>();
-        this.capacity = capacity;
         head = new DoublyListNode();
         tail = new DoublyListNode();
         head.next = tail;
@@ -56,7 +81,7 @@ public class LRUCache {
 
     }
 
-    private void addNodeToHead(DoublyListNode node){
+    private  void addNodeToHead(DoublyListNode node){
         if(node == null)
             throw new IllegalArgumentException();
         DoublyListNode previous = head;

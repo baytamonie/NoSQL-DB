@@ -1,41 +1,135 @@
 package handlers;
 
 import controller.Controller;
+import databaseTransfer.HorizontalScaling;
+import documents.entities.Client;
+import documents.entities.Node;
 import documents.entities.Packet;
+import documents.functions.DatabaseFunctionsFactory;
+import documents.functions.DatabaseWriteFunction;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-public class ClientHandler implements Runnable{
+public class ClientHandler implements Runnable {
 
-    private final Socket socket;
-    private final ObjectOutputStream objectOutputStream;
+  private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public ClientHandler(Socket socket, ObjectOutputStream objectOutputStream) {
-        this.socket = socket;
-        this.objectOutputStream = objectOutputStream;
+  private final ObjectOutputStream objectOutputStream;
+  private final ObjectInputStream objectInputStream;
+  private final Socket client;
+  private  final Client c;
+  public ClientHandler(ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream, Socket socket, int id) {
+    this.objectOutputStream = objectOutputStream;
+    this.objectInputStream = objectInputStream;
+    this.client = socket;
+     c = new Client(id);
+    Controller.clients.add(c);
+  }
+
+  private String getMsg() {
+    try {
+      return ((Packet) objectInputStream.readObject()).getMessage();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+  private void sendMsg(String msg) {
+    try {
+      objectOutputStream.writeObject(new Packet(msg));
+    } catch (Exception e) {
+      e.printStackTrace();
+
+    }
+  }
+  public static synchronized  void refreshAllNodes(){
+
+    for(Node n: Controller.nodes){
+      System.out.println("NODE TO REFRESH : "+n.getPort());
+      ObjectOutputStream objectOutputStream1 = n.getObjectOutputStream();
+      if(objectOutputStream1!=null){
+        System.out.println("NODE NOT NULL");
+
+        HorizontalScaling horizontalScaling = new HorizontalScaling(n.getObjectInputStream(),n.getObjectOutputStream());
+        horizontalScaling.refreshNode();
+      }
     }
 
-    @Override
-    public void run() {
-        if( Controller.nodes.isEmpty()){
-            System.out.println("No available nodes right now to serve the client");
+  }
+  @Override
+  public void run() {
+
+    if (Controller.nodes.isEmpty()) {
+      System.out.println("No available nodes right now to serve the client");
+    } else {
+      try {
+        lock.writeLock().lock();
+        Collections.sort(Controller.nodes);
+        for (Node node : Controller.nodes) {
+          System.out.println("NODE " + node.getPort() + "    " + node.getLoad());
         }
-        else{
+        System.out.println("Client connected at node " + (Controller.nodes.get(0).getPort()));
+        objectOutputStream.writeObject(
+            new Packet(String.valueOf(Controller.nodes.get(0).getPort())));
+        Controller.nodes.get(0).incrementLoad();
+        Controller.clientsMapper.put(c.getId(),Controller.nodes.get(0));
+        lock.writeLock().unlock();
+      } catch (IOException e) {
+        System.out.println("Error connecting client to node");
+        return;
+      }
+      DatabaseFunctionsFactory databaseFunctionsFactory =
+          new DatabaseFunctionsFactory(objectInputStream);
+      while (!client.isClosed()) {
+        try{
+          String command = getMsg();
+          if(command==null){
             try{
-                Controller.nodes.stream().sorted().collect(Collectors.toList());
-                System.out.println("Client connected at node "+(Controller.nodes.get(0).getPort()));
-                objectOutputStream.writeObject(new Packet(String.valueOf(Controller.nodes.get(0).getPort())));
+              Controller.clients.remove(c);
+              Controller.clientsMapper.get(c.getId()).decrementLoad();
+              System.out.println("client disconnected");
+              client.close();
+            } catch (IOException ex) {
+              ex.printStackTrace();
             }
-            catch (IOException e){
-                System.out.println("Error connecting client to node");
-            }
+          }
+          DatabaseWriteFunction writeFunction = databaseFunctionsFactory.getDataBaseFunction(command);
+          boolean didFunctionExecute = false;
+          if(writeFunction!=null){
+            didFunctionExecute = writeFunction.execute();
+            sendMsg(String.valueOf(didFunctionExecute));
+            refreshAllNodes();
+            System.out.println("REFRESHED NODES");
+            sendMsg("done");
+          }
+          else {
+            if(command != null)
+            sendMsg("false");
+          }}
+        catch (Exception e){
+          e.printStackTrace();
+          try{
+            if(client.isClosed())
+              continue;
+            client.close();
+            Controller.clients.remove(c);
+            Controller.clientsMapper.get(c.getId()).decrementLoad();
+            System.out.println("client disconnected");
+          } catch (IOException ex) {
+            Controller.clients.remove(c);
+            Controller.clientsMapper.get(c.getId()).decrementLoad();
+            System.out.println("client disconnected");
+            ex.printStackTrace();
+          }
         }
 
+
+      }
     }
+  }
 }

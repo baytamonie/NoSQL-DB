@@ -2,7 +2,7 @@
   {
   "username" : "bayta",
   "password": "123",
-  "permissions": "rw"
+  "permissions": "rwi"
 }
 ,
 {

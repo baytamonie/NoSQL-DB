@@ -1,7 +1,5 @@
 package documents.functions;
 
-import utils.FileUtils;
-
 public class DeleteDatabase implements DatabaseWriteFunction{
 
     private final String dbName;
@@ -11,11 +9,11 @@ public class DeleteDatabase implements DatabaseWriteFunction{
     }
 
     @Override
-    public boolean execute() {
+    public synchronized boolean execute() {
 
             String path = "src/main/resources/databases/" + dbName;
-            if (FileUtils.checkIfFileOrDirectoryExists(path)) {
-                if(FileUtils.deleteDirectory(path))
+            if (fileUtils.checkIfFileOrDirectoryExists(path)) {
+                if(fileUtils.deleteDirectory(path))
                 return true;
             }
             return false;

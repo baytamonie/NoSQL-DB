@@ -1,25 +1,35 @@
 package driver;
 
+
 import documents.entities.Packet;
 
 import java.io.*;
 import java.net.Socket;
 
 public class ClientConnector {
-    private DataInputStream fromNode;
-    private ObjectOutputStream toNode;
 
+    private  ObjectInputStream objectInputStream;
+    private  ObjectOutputStream objectOutputStream;
+
+
+    public ObjectInputStream getControllerInputStream(){
+        return this.objectInputStream;
+    }
+
+    public ObjectOutputStream getControllerOutputStream(){
+        return this.objectOutputStream;
+    }
     public Socket initConnection() {
         try {
             int port = getNodePort();
             if (port == -1) {
                 System.out.println("Error connecting client to port");
-                ClientHandler.connectionEstablished = false;
+                ClientDriver.connectionEstablished = false;
                 return null;
             }
             return new Socket("localhost", port);
         } catch (Exception e) {
-            ClientHandler.connectionEstablished = false;
+            ClientDriver.connectionEstablished = false;
             System.out.println("Error initializing client");
             throw new RuntimeException();
         }
@@ -28,16 +38,16 @@ public class ClientConnector {
     public int getNodePort() {
         try {
             Socket connector = new Socket("localhost", 8080);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(connector.getOutputStream());
+            objectOutputStream = new ObjectOutputStream(connector.getOutputStream());
             objectOutputStream.writeObject(new Packet("clientConnection"));
-            ObjectInputStream objectInputStream = new ObjectInputStream(connector.getInputStream());
+             objectInputStream = new ObjectInputStream(connector.getInputStream());
             Packet portNum = (Packet) objectInputStream.readObject();
-            int port = Integer.valueOf(portNum.getMessage());
-            System.out.println(port);
+            int port = Integer.parseInt(portNum.getMessage());
+            System.out.println("node port: "+port);
             return port;
         } catch (Exception e) {
             System.out.println("Error giving port");
-            ClientHandler.connectionEstablished = false;
+            ClientDriver.connectionEstablished = false;
             return -1;
         }
 

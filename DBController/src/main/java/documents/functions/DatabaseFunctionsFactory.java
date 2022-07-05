@@ -45,6 +45,7 @@ public class DatabaseFunctionsFactory {
         collectionName = getPacket();
         id = getPacket();
         document = getJsonObject();
+        System.out.println(document);
         return new UpdateDocument(dbName,collectionName,id,document);
       case "deleteDocument":
         dbName = getPacket();

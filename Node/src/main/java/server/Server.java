@@ -1,34 +1,37 @@
 package server;
 
+import databaseTransfer.HorizontalScaling;
 import documents.entities.Packet;
 import documents.entities.User;
 import org.json.simple.JSONObject;
 import utilities.FileUtils;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Server {
 
   private final int port;
-  public volatile static int load;
+  public static volatile int load;
   private ServerSocket serverSocket;
   private Socket controller;
-  private ObjectOutputStream objectOutputStream;
+  private ObjectOutputStream objectOutputStreamController;
+
   private final Scanner scanner;
+
   public static Server server = new Server();
   public static List<User> userList;
   private static final String usersPath = "src/main/resources/databases/usernames.json";
-  private  ObjectInputStream objectInputStreamController;
+  private ObjectInputStream objectInputStreamController;
+  private final FileUtils fileUtils = FileUtils.getInstance();
 
   private void loadUsers() {
-    List<JSONObject> usersJSON = FileUtils.loadData(usersPath);
+    List<JSONObject> usersJSON = fileUtils.loadData(usersPath);
     for (JSONObject userJSON : usersJSON) {
       User user =
           new User(
@@ -36,7 +39,6 @@ public class Server {
               (String) userJSON.get("password"),
               (String) userJSON.get("permissions"));
       userList.add(user);
-
     }
   }
 
@@ -61,21 +63,30 @@ public class Server {
 
   public void startNode() {
     sendPortToController();
-    refreshNode();
+    HorizontalScaling horizontalScaling =
+        new HorizontalScaling(objectInputStreamController, objectOutputStreamController,controller);
+    loadUsers();
     Thread checkUserInput =
         new Thread(
             () -> {
               if (scanner.next().equals("STOP")) this.closeServer();
             });
+    Thread scaling = new Thread(horizontalScaling);
+    scaling.start();
     checkUserInput.start();
+
     while (!this.serverSocket.isClosed()) {
       try {
         Socket client = serverSocket.accept();
         load++;
-        System.out.println(load);
         System.out.println("Accepted client");
-        Thread clientThread = new Thread(new ClientHandler(client, controller,objectOutputStream,objectInputStreamController));
+        Thread clientThread =
+            new Thread(
+                new ClientHandler(
+                    client, objectOutputStreamController, objectInputStreamController));
+
         clientThread.start();
+
       } catch (IOException e) {
         System.out.println("Error accepting clients, try rebooting this node");
       }
@@ -98,21 +109,17 @@ public class Server {
   private void sendPortToController() {
     try {
       controller = new Socket("localhost", 8080);
-      objectOutputStream = new ObjectOutputStream(controller.getOutputStream());
+      objectOutputStreamController = new ObjectOutputStream(controller.getOutputStream());
       objectInputStreamController = new ObjectInputStream(controller.getInputStream());
 
       Packet controllerConnection = new Packet("nodeConnection");
       Packet sendPortNumber = new Packet(String.valueOf(port));
-      objectOutputStream.writeObject((Object)controllerConnection);
-      objectOutputStream.writeObject((Object)sendPortNumber);
+      objectOutputStreamController.writeObject((Object) controllerConnection);
+      objectOutputStreamController.writeObject((Object) sendPortNumber);
 
     } catch (IOException e) {
       System.out.println("Error giving port to controller, try again please");
       throw new RuntimeException();
     }
-  }
-
-  private void refreshNode() {
-    loadUsers();
   }
 }
