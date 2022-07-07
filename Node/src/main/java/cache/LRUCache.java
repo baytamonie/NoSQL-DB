@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class LRUCache implements Cache{
 
-    class DoublyListNode{
+    static class DoublyListNode{
         String key;
         JSONObject value;
         DoublyListNode prev;
@@ -18,7 +18,8 @@ public class LRUCache implements Cache{
     private  final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private final Map<String,DoublyListNode> cache;
     private final int capacity = 5;
-    private DoublyListNode head,tail;
+    private final DoublyListNode head;
+    private final DoublyListNode tail;
 
     @Override
     public JSONObject get(String key){

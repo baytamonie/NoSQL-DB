@@ -6,13 +6,15 @@ import documents.entities.User;
 import org.json.simple.JSONObject;
 import utilities.FileUtils;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class Server {
 
@@ -27,6 +29,7 @@ public class Server {
   public static Server server = new Server();
   public static List<User> userList;
   private static final String usersPath = "src/main/resources/databases/usernames.json";
+  private final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
   private ObjectInputStream objectInputStreamController;
   private final FileUtils fileUtils = FileUtils.getInstance();
 
@@ -78,12 +81,14 @@ public class Server {
     while (!this.serverSocket.isClosed()) {
       try {
         Socket client = serverSocket.accept();
+        reentrantReadWriteLock.writeLock().lock();
         load++;
+        reentrantReadWriteLock.writeLock().unlock();
         System.out.println("Accepted client");
         Thread clientThread =
             new Thread(
                 new ClientHandler(
-                    client, objectOutputStreamController, objectInputStreamController));
+                    client));
 
         clientThread.start();
 
@@ -93,9 +98,6 @@ public class Server {
     }
   }
 
-  public int getPort() {
-    return port;
-  }
 
   public void closeServer() {
     try {
@@ -114,8 +116,8 @@ public class Server {
 
       Packet controllerConnection = new Packet("nodeConnection");
       Packet sendPortNumber = new Packet(String.valueOf(port));
-      objectOutputStreamController.writeObject((Object) controllerConnection);
-      objectOutputStreamController.writeObject((Object) sendPortNumber);
+      objectOutputStreamController.writeObject(controllerConnection);
+      objectOutputStreamController.writeObject(sendPortNumber);
 
     } catch (IOException e) {
       System.out.println("Error giving port to controller, try again please");

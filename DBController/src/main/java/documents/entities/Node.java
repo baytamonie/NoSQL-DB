@@ -7,7 +7,7 @@ import java.net.Socket;
 public class Node implements Comparable<Node> {
 
   private final int port;
-  private final Socket socket;
+
   private final ObjectInputStream objectInputStream;
   private final ObjectOutputStream objectOutputStream;
   private int load;
@@ -19,7 +19,6 @@ public class Node implements Comparable<Node> {
       ObjectOutputStream objectOutputStream) {
     load = 0;
     this.port = port;
-    this.socket = socket;
     this.objectInputStream = objectInputStream;
     this.objectOutputStream = objectOutputStream;
   }
@@ -28,9 +27,6 @@ public class Node implements Comparable<Node> {
     return port;
   }
 
-  public Socket getSocket() {
-    return socket;
-  }
 
   public ObjectInputStream getObjectInputStream() {
     return objectInputStream;
@@ -44,15 +40,15 @@ public class Node implements Comparable<Node> {
     return load;
   }
 
-  public void setLoad(int load) {
+  public synchronized void setLoad(int load) {
     this.load = load;
   }
 
-  public void incrementLoad() {
+  public synchronized void incrementLoad() {
     load++;
   }
 
-  public void decrementLoad() {
+  public synchronized void decrementLoad() {
     if (load > 0) load--;
   }
 

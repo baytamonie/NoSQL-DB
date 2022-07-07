@@ -2,12 +2,12 @@ package documents.functions;
 
 import org.json.simple.JSONObject;
 
-
 public class AddDocumentToCollection implements DatabaseWriteFunction {
 
   private final String dbName;
   private final String collectionName;
   private final JSONObject objectToAdd;
+
   public AddDocumentToCollection(String dbName, String collectionName, JSONObject document) {
     this.dbName = dbName;
     this.collectionName = collectionName;
@@ -26,9 +26,7 @@ public class AddDocumentToCollection implements DatabaseWriteFunction {
 
     if (!documentsUtils.checkIfSchemaMatches(path + "/schema.json", objectToAdd)) return false;
     objectToAdd.put("_id", key);
-    indexingUtils.addObjectToIndexedFiles(objectToAdd,dbName,collectionName);
+    indexingUtils.addObjectToIndexedFiles(objectToAdd, dbName, collectionName);
     return fileUtils.writeJsonToEndOfFile(objectToAdd, path, key);
   }
-
-
 }

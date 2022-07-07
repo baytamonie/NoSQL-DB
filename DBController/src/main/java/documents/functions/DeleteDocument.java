@@ -35,9 +35,7 @@ public class DeleteDocument implements DatabaseWriteFunction {
         IdsObject idsObject = ids.get(documentId);
         if (idsObject == null) return null;
         String dataPath = fileUtils.pathBuilder(dbName, collectionName, "data.json");
-        JSONObject jsonObject =
-                fileUtils.getObjectRandomAccessFile(dataPath, idsObject.getBegin(), idsObject.getEnd());
-        return jsonObject;
+        return fileUtils.getObjectRandomAccessFile(dataPath, idsObject.getBegin(), idsObject.getEnd());
     }
 
 

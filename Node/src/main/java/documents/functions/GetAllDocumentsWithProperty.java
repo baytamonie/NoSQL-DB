@@ -1,18 +1,12 @@
 package documents.functions;
 
-import com.google.common.collect.LinkedHashMultimap;
 import documents.IdsObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import utilities.DocumentUtils;
-import utilities.FileUtils;
 
-import javax.print.Doc;
 import java.io.FileReader;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 
 public class GetAllDocumentsWithProperty implements DocumentReadFunctions {
 
@@ -71,8 +65,6 @@ public class GetAllDocumentsWithProperty implements DocumentReadFunctions {
       JSONObject jsonObject = (JSONObject) jsonParser.parse(fileReader);
       for (Object k : jsonObject.keySet()) {
         try {
-          System.out.println(k);
-          System.out.println(propertyValue);
           if(propertyValue.equals(k)){
           JSONArray jsonArray = (JSONArray) jsonObject.get(k);
           for (Object ob : jsonArray) {
@@ -84,6 +76,7 @@ public class GetAllDocumentsWithProperty implements DocumentReadFunctions {
           return ans;
           }
         } catch (Exception e) {
+          e.printStackTrace();
         }
       }
 

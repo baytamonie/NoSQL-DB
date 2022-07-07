@@ -14,20 +14,17 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Controller implements Serializable {
 
-  private final int port;
   private ServerSocket serverSocket;
 
-  private ObjectInputStream objectInputStream;
-  private ObjectOutputStream objectOutputStream;
-  private volatile int clientId = 0;
+  private int clientId = 0;
 
-
-  public static LinkedList<Node> nodes;
+  private static LinkedList<Node> nodes;
   public static LinkedList<Client> clients;
-  public static HashMap<Integer,Node> clientsMapper;
+  public static HashMap<Integer, Node> clientsMapper;
 
   private static final Controller controller = new Controller();
 
@@ -36,11 +33,11 @@ public class Controller implements Serializable {
   }
 
   private Controller() {
-    this.port = 8080;
     nodes = new LinkedList<>();
     clients = new LinkedList<>();
     clientsMapper = new HashMap<>();
     try {
+      int port = 8080;
       serverSocket = new ServerSocket(port);
       System.out.println("Server started");
     } catch (IOException e) {
@@ -52,15 +49,17 @@ public class Controller implements Serializable {
     while (!this.serverSocket.isClosed()) {
       try {
         Socket socket = serverSocket.accept();
-        objectInputStream = new ObjectInputStream(socket.getInputStream());
-        objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+        ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         Packet socketType = (Packet) objectInputStream.readObject();
         Thread socketHandler = null;
         if (socketType.getMessage().equals("nodeConnection"))
-          socketHandler = new Thread(new NodeHandler(socket,objectInputStream,objectOutputStream));
+          socketHandler =
+              new Thread(new NodeHandler(socket, objectInputStream, objectOutputStream));
         else if (socketType.getMessage().equals("clientConnection"))
-          socketHandler = new Thread(new ClientHandler(objectInputStream,objectOutputStream,socket,clientId++));
-
+          socketHandler =
+              new Thread(
+                  new ClientHandler(objectInputStream, objectOutputStream, socket, clientId++));
         if (socketHandler != null) socketHandler.start();
       } catch (Exception e) {
         e.printStackTrace();
@@ -68,7 +67,15 @@ public class Controller implements Serializable {
     }
   }
 
-  public int getPort() {
-    return port;
+  public static synchronized void addNode(Node node) {
+    if (node != null) nodes.add(node);
+  }
+
+  public static synchronized void removeNode(Node node) {
+    if (node != null) nodes.remove(node);
+  }
+
+  public static List<Node> getNodes() {
+    return nodes;
   }
 }

@@ -180,12 +180,12 @@ public class ClientDriver implements ClientInterface {
       sendMsgToController(new Packet("createDatabase"));
       sendMsgToController(new Packet(dbName));
       String confirmation = getMsgFromController();
-      if (confirmation.equals("true")){
+      if (confirmation!=null &&confirmation.equals("true")){
         System.out.println("Creating database " + dbName + " is successful");
-        System.out.println(confirmation);
-        System.out.println(getMsgFromController());
+
       }
       else System.out.println("Creating database " + dbName + " has failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(
@@ -202,12 +202,12 @@ public class ClientDriver implements ClientInterface {
       sendMsgToController(new Packet(collectionName));
       sendObjectToController(schema);
       String confirmation = getMsgFromController();
-      if (confirmation.equals("true")){
+      if (confirmation!=null && confirmation.equals("true")){
         System.out.println("Creating collection " + collectionName + " is successful");
-        getMsgFromController();
 
       }
       else System.out.println("Creating collection " + collectionName + " has failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(
@@ -221,11 +221,11 @@ public class ClientDriver implements ClientInterface {
       sendMsgToController(new Packet("deleteDatabase"));
       sendMsgToController(new Packet(databaseName));
       String confirmation = getMsgFromController();
-      if (confirmation.equals("true")){
+      if (confirmation!=null &&confirmation.equals("true")){
         System.out.println("Deleting database " + databaseName + " is successful");
-      getMsgFromController();
       }
       else System.out.println("Deleting database " + databaseName + " has failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(
@@ -242,9 +242,9 @@ public class ClientDriver implements ClientInterface {
       String confirmation = getMessageFromNode();
       if (confirmation.equals("true")){
         System.out.println("Deleting collection " + collectionName + " successful");
-        getMsgFromController();
       }
       else System.out.println("Deleting collection " + collectionName + " failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(
@@ -262,11 +262,12 @@ public class ClientDriver implements ClientInterface {
       sendMsgToController(new Packet(collectionName));
       sendObjectToController(document);
       String confirmation = getMsgFromController();
-      if (confirmation.equals("true")){
+      System.out.println(confirmation);
+      if (confirmation!=null &&confirmation.equals("true")){
         System.out.println("Writing document " + document.toJSONString() + " is successful");
-        getMsgFromController();
       }
       else System.out.println("Writing document " + document.toJSONString() + " has failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(
@@ -285,11 +286,12 @@ public class ClientDriver implements ClientInterface {
       sendMsgToController(new Packet(documentId));
       sendObjectToNode(newValue);
       String confirmation = getMsgFromController();
-      if (confirmation.equals("true")){
+      if (confirmation!=null &&confirmation.equals("true")){
         System.out.println("Updating document " + documentId + " is successful");
-        getMsgFromController();
+
       }
       else System.out.println("Updating document " + documentId + " has failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(
@@ -306,11 +308,12 @@ public class ClientDriver implements ClientInterface {
       sendMsgToController(new Packet(collectionName));
       sendMsgToController(new Packet(documentId));
       String confirmation = getMsgFromController();
-      if (confirmation.equals("true")){
+      if (confirmation!=null &&confirmation.equals("true")){
         System.out.println("Deleting document " + documentId + " is successful");
-        getMsgFromController();
+
       }
       else System.out.println("Deleting document " + documentId + " has failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(
@@ -328,11 +331,12 @@ public class ClientDriver implements ClientInterface {
       sendMsgToController(new Packet(collectionName));
       sendMsgToController(new Packet(indexName));
       String confirmation = getMsgFromController();
-      if (confirmation.equals("true")){
+      if (confirmation!=null &&confirmation.equals("true")){
         System.out.println("creating index on " + indexName + " is successful");
-        getMsgFromController();
+
       }
       else System.out.println("creating index on " + indexName + " has failed");
+      getMsgFromController();
       return;
     }
     throw new RuntimeException(

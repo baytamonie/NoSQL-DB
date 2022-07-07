@@ -23,7 +23,7 @@ public class ClientConnector {
         try {
             int port = getNodePort();
             if (port == -1) {
-                System.out.println("Error connecting client to port");
+                System.out.println("Error connecting client to any of the nodes");
                 ClientDriver.connectionEstablished = false;
                 return null;
             }
@@ -46,7 +46,7 @@ public class ClientConnector {
             System.out.println("node port: "+port);
             return port;
         } catch (Exception e) {
-            System.out.println("Error giving port");
+            System.out.println("Error sending port to Controller");
             ClientDriver.connectionEstablished = false;
             return -1;
         }

@@ -1,13 +1,12 @@
 package utilities;
 
-import documents.entities.JSONSchema;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.*;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 public  class DocumentUtils {
     private static volatile DocumentUtils documentsUtils;
@@ -33,8 +32,7 @@ public  class DocumentUtils {
                 +'/'
                 +collectionName;
         File tempFile = new File(path);
-        boolean exists = tempFile.exists();
-        return exists;
+        return tempFile.exists();
     }
     public  String pathBuilder(String dbName, String collectionName, String fileName){
 

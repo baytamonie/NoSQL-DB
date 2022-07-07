@@ -2,10 +2,6 @@ package documents.functions;
 
 import documents.entities.Packet;
 import documents.entities.User;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import server.Server;
 
 public class Login implements DocumentReadFunctions {

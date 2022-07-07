@@ -13,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ClientHandler implements Runnable {
@@ -48,13 +49,11 @@ public class ClientHandler implements Runnable {
     }
   }
   public static synchronized  void refreshAllNodes(){
-
-    for(Node n: Controller.nodes){
+      List<Node> nodes  = Controller.getNodes();
+    for(Node n: nodes){
       System.out.println("NODE TO REFRESH : "+n.getPort());
       ObjectOutputStream objectOutputStream1 = n.getObjectOutputStream();
       if(objectOutputStream1!=null){
-        System.out.println("NODE NOT NULL");
-
         HorizontalScaling horizontalScaling = new HorizontalScaling(n.getObjectInputStream(),n.getObjectOutputStream());
         horizontalScaling.refreshNode();
       }
@@ -64,20 +63,20 @@ public class ClientHandler implements Runnable {
   @Override
   public void run() {
 
-    if (Controller.nodes.isEmpty()) {
+    if (Controller.getNodes().isEmpty()) {
       System.out.println("No available nodes right now to serve the client");
     } else {
       try {
         lock.writeLock().lock();
-        Collections.sort(Controller.nodes);
-        for (Node node : Controller.nodes) {
+        Collections.sort(Controller.getNodes());
+        for (Node node : Controller.getNodes()) {
           System.out.println("NODE " + node.getPort() + "    " + node.getLoad());
         }
-        System.out.println("Client connected at node " + (Controller.nodes.get(0).getPort()));
+        System.out.println("Client connected at node " + (Controller.getNodes().get(0).getPort()));
         objectOutputStream.writeObject(
-            new Packet(String.valueOf(Controller.nodes.get(0).getPort())));
-        Controller.nodes.get(0).incrementLoad();
-        Controller.clientsMapper.put(c.getId(),Controller.nodes.get(0));
+            new Packet(String.valueOf(Controller.getNodes().get(0).getPort())));
+        Controller.getNodes().get(0).incrementLoad();
+        Controller.clientsMapper.put(c.getId(),Controller.getNodes().get(0));
         lock.writeLock().unlock();
       } catch (IOException e) {
         System.out.println("Error connecting client to node");
@@ -99,7 +98,7 @@ public class ClientHandler implements Runnable {
             }
           }
           DatabaseWriteFunction writeFunction = databaseFunctionsFactory.getDataBaseFunction(command);
-          boolean didFunctionExecute = false;
+          boolean didFunctionExecute;
           if(writeFunction!=null){
             didFunctionExecute = writeFunction.execute();
             sendMsg(String.valueOf(didFunctionExecute));
@@ -108,7 +107,6 @@ public class ClientHandler implements Runnable {
             sendMsg("done");
           }
           else {
-            if(command != null)
             sendMsg("false");
           }}
         catch (Exception e){

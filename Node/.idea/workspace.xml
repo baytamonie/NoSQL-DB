@@ -5,84 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0728a34-a203-497c-85aa-f3079b5ab03c" name="Changes" comment="Added Node.java">
-      <change afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/documents/entities/ObjectPacket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/documents/entities/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/documents/entities/Packet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/documents/entities/ObjectPacket.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/documents/entities/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/documents/entities/Packet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/src/main/java/driver/ClientInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientConnector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientDriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientDriver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client/target/classes/driver/ClientInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client/target/classes/driver/ClientInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/IdsObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/IdsObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/JSONSchema.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/JSONSchema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/databaseTransfer/HorizontalScaling.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/databaseTransfer/HorizontalScaling.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/Packet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/entities/Packet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/AddDocumentToCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/AddDocumentToCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateCollection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/CreateIndex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseFunctionsFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseFunctionsFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseWriteFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DatabaseWriteFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/DeleteDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/UpdateDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/documents/functions/UpdateDocument.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/ClientHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/handlers/NodeHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/utils/DocumentsUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/utils/DocumentsUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/java/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/java/utils/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/createIndexTest/test1/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/createIndexTest/test1/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/createIndexTest/test1/name.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/createIndexTest/test1/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/createIndexTest/test2/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/createIndexTest/test2/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/createIndexTest/test2/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/films/meta/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/films/meta/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/films/meta/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/idsPointer" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/test/testCollection/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/test/testCollection/ids.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/test/testCollection/index.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/test/testCollection/name.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/test/testCollection/schema.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/aws/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/aws/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/aws/ids.json" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/aws/ids.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/aws/index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/src/main/resources/databases/videos/aws/index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/createIndexTest/test1/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/createIndexTest/test1/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/createIndexTest/test1/name.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/createIndexTest/test1/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/createIndexTest/test2/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/createIndexTest/test2/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/createIndexTest/test2/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/films/meta/data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/films/meta/ids.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/films/meta/schema.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databases/idsPointer" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/IdsObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/IdsObject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/JSONSchema.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/JSONSchema.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/databaseTransfer/HorizontalScaling.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/databaseTransfer/HorizontalScaling.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/Packet.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/entities/Packet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/AddDocumentToCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/AddDocumentToCollection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateCollection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateDataBase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/CreateIndex.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DatabaseFunctionsFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DatabaseFunctionsFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DatabaseWriteFunction.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DatabaseWriteFunction.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteCollection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteCollection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteDataBase.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteDataBase.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteDocument.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/DeleteDocument.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/UpdateDocument.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/documents/functions/UpdateDocument.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/ClientHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/ClientHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/handlers/NodeHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/utils/DocumentsUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/utils/DocumentsUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DBController/target/classes/utils/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../DBController/target/classes/utils/FileUtils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -226,6 +190,8 @@
       <workItem from="1656455067156" duration="1091000" />
       <workItem from="1656456474378" duration="2882000" />
       <workItem from="1656773197322" duration="8258000" />
+      <workItem from="1657111016542" duration="1431000" />
+      <workItem from="1657207231534" duration="4856000" />
     </task>
     <task id="LOCAL-00001" summary="Added Node.java">
       <created>1654188495885</created>

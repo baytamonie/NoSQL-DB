@@ -7,6 +7,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class HorizontalScaling {
@@ -16,10 +17,7 @@ public class HorizontalScaling {
   private List<File> directories;
   private final FileUtils fileUtils = FileUtils.getInstance();
 
-
-  public HorizontalScaling(
-       ObjectInputStream inputStream, ObjectOutputStream outputStream)
-      {
+  public HorizontalScaling(ObjectInputStream inputStream, ObjectOutputStream outputStream) {
     this.objectInputStream = inputStream;
     this.objectOutputStream = outputStream;
   }
@@ -27,15 +25,14 @@ public class HorizontalScaling {
   public void loadDirectories() {
     directories = new LinkedList<>();
     File dir = new File("src/main/resources/databases");
-    showFiles(dir.listFiles());
-
+    listFiles(Objects.requireNonNull(dir.listFiles()));
   }
 
-  public void showFiles(File[] files) {
+  public void listFiles(File[] files) {
     for (File file : files) {
       if (file.isDirectory()) {
         directories.add(file);
-        showFiles(file.listFiles());
+        listFiles(Objects.requireNonNull(file.listFiles()));
       }
     }
   }
@@ -53,7 +50,6 @@ public class HorizontalScaling {
   }
 
   public synchronized void refreshNode() {
-
     sendPacket("refresh");
     loadDirectories();
     for (File dir : directories) {
@@ -65,21 +61,21 @@ public class HorizontalScaling {
       sendPacket("collection");
       sendPacket(dir.getPath());
       String isCollectionThere = getMessage();
-      if (isCollectionThere.equals("false")) {
-        int fileCount = dir.listFiles().length;
+      if (Objects.equals(isCollectionThere, "false")) {
+        int fileCount = Objects.requireNonNull(dir.listFiles()).length;
         sendPacket(String.valueOf(fileCount));
-        for (File file : dir.listFiles()) {
+        for (File file : Objects.requireNonNull(dir.listFiles())) {
           sendFile(file.getPath());
         }
-      } else if (isCollectionThere.equals("true")) {
-        int versionNum = getVersionNumber(dir.getPath() + "/index.txt");
+      } else if (Objects.equals(isCollectionThere, "true")) {
+        int versionNum = getFileVersionNumber(dir.getPath() + "/index.txt");
 
         sendPacket(String.valueOf(versionNum));
         String response = getMessage();
         if (response.equals("!equal")) {
-          int fileCount = dir.listFiles().length;
+          int fileCount = Objects.requireNonNull(dir.listFiles()).length;
           sendPacket(String.valueOf(fileCount));
-          for (File file : dir.listFiles()) {
+          for (File file : Objects.requireNonNull(dir.listFiles())) {
             sendFile(file.getPath());
           }
         }
@@ -88,20 +84,17 @@ public class HorizontalScaling {
     sendPacket("_DONE_");
     while (true) {
       String msg = getMessage();
-      if (msg.equals("_DONE_"))
-        return;
+      if (Objects.equals(msg, "_DONE_")) return;
       if (fileUtils.checkIfFileOrDirectoryExists(msg)) {
         sendPacket("YES");
 
-      }
-      else {sendPacket("NO");
-
-
+      } else {
+        sendPacket("NO");
       }
     }
   }
 
-  private int getVersionNumber(String path) {
+  private int getFileVersionNumber(String path) {
     try (FileInputStream fileInputStream = new FileInputStream(path)) {
       Scanner scanner = new Scanner(fileInputStream, "UTF-8");
       String line = scanner.nextLine();
@@ -127,7 +120,7 @@ public class HorizontalScaling {
     }
   }
 
-  public void sendObject(Object obj) {
+  private void sendObject(Object obj) {
     try {
       objectOutputStream.writeObject(obj);
       objectOutputStream.flush();
@@ -136,7 +129,7 @@ public class HorizontalScaling {
     }
   }
 
-  public void sendPacket(String msg) {
+  private void sendPacket(String msg) {
     try {
       objectOutputStream.writeObject(new Packet(msg));
       objectOutputStream.flush();

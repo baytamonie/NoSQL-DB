@@ -12,7 +12,7 @@ public interface ClientInterface {
     JSONArray getCollection(String databaseName, String collectionName);
     JSONObject getDocument(String databaseName, String collectionName, String documentId);
     Object getProperty(String databaseName,String collectionName, String documentId, String propertyName);
-    List<JSONObject> getProperties(String databaseName,String collectionName, String property,String value);
+    JSONArray getProperties(String databaseName,String collectionName, String property,String value);
 
     void createDatabase(String name);
     void createCollection(String databaseName, String collectionName,JSONObject schema);

@@ -1,14 +1,8 @@
 package documents.functions;
 
-import cache.LRUCache;
 import documents.IdsObject;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import org.json.simple.JSONObject;
-import utilities.DocumentUtils;
-import utilities.FileUtils;
 
-import javax.print.Doc;
 import java.util.HashMap;
 
 public class GetPropertyValueFromDocument implements DocumentReadFunctions {
